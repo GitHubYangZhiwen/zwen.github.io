@@ -1,0 +1,99 @@
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>
+    Intro to MapImageLayer | Sample | ArcGIS API for JavaScript 4.22
+  </title>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.22/esri/themes/light/main.css" />
+  <script src="https://js.arcgis.com/4.22/"></script>
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+  <script>
+    require([
+      "esri/Map",
+      "esri/views/SceneView",
+      "esri/layers/GeoJSONLayer",
+      "esri/core/scheduling",
+      "esri/core/watchUtils"
+    ], (Map, SceneView, GeoJSONLayer, scheduling, watchUtils) => {
+      /*****************************************************************
+       * Create a MapImageLayer instance pointing to a Map Service
+       * containing data about pool permits in Southern California.
+       *****************************************************************/
+      const permitsLayer = new GeoJSONLayer({
+        url: "./countries.json",
+        copyright: "world map",
+        hasZ: true,
+        elevationInfo: {
+          mode: 'absolute-height',
+          offset: 400,
+          unit: 'kilometers'
+        },
+        renderer: {
+          type: "simple",  // autocasts as new SimpleRenderer()
+          symbol: {
+            type: "simple-fill",  // autocasts as new SimpleFillSymbol()
+            color: [30, 144, 255, 0.7],
+            outline: {  // autocasts as new SimpleLineSymbol()
+              width: 1,
+              color: "white"
+            }
+          }
+        }
+      });
+
+      /*****************************************************************
+       * Add the layer to a map
+       *****************************************************************/
+      const map = new Map({
+        basemap: "streets-night-vector",
+        layers: [permitsLayer]
+      });
+
+      const view = new SceneView({
+        ui: {
+          components: []
+        },
+        container: "viewDiv",
+        map: map
+      });
+      view.when(() => {
+        let camera = view.camera.clone();
+        camera.heading = -15;
+        view.camera = camera;
+        // Animate the scene view camera heading in every frame
+        let handle = scheduling.addFrameTask({
+          update: function () {
+            let camera = view.camera.clone();
+            camera.position.longitude += 0.5;
+            view.camera = camera;
+          }
+        });
+
+        // Remove frame task as soon as the user starts navigating in the view
+        watchUtils.whenOnce(view, "navigating", function () {
+          handle.remove();
+        });
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>
