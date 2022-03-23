@@ -1,0 +1,14 @@
+{
+  "name": "temp1",
+  "version": "1.1.0",
+  "description": "",
+  "attribution": "Rendered with <a href=\"https://www.maptiler.com/desktop/\">MapTiler Desktop</a>",
+  "type": "baselayer",
+  "format": "pbf",
+  "minzoom": "6",
+  "maxzoom": "14",
+  "scale": "1.000000",
+  "bounds": [106.30057586, 29.65486022, 106.67931798, 30.08248345],
+  "profile": "mercator",
+  "vector_layers": [{"id":"2015年土地利用数据样例-矢量-北碚区","description":"","minzoom":6, "maxzoom":14,"fields":{"OBJECTID":"Number","DDMM":"Number","Shape_Leng":"Number","Shape_Area":"Number"}}]
+}

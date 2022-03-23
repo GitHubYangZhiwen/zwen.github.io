@@ -27,8 +27,10 @@
       "esri/views/SceneView",
       "esri/layers/GeoJSONLayer",
       "esri/core/scheduling",
-      "esri/core/watchUtils"
-    ], (Map, SceneView, GeoJSONLayer, scheduling, watchUtils) => {
+      "esri/core/watchUtils",
+      "esri/Basemap",
+      "esri/layers/WebTileLayer",
+    ], (Map, SceneView, GeoJSONLayer, scheduling, watchUtils, Basemap, WebTileLayer) => {
       /*****************************************************************
        * Create a MapImageLayer instance pointing to a Map Service
        * containing data about pool permits in Southern California.
@@ -59,7 +61,17 @@
        * Add the layer to a map
        *****************************************************************/
       const map = new Map({
-        basemap: "streets-night-vector",
+        basemap: new Basemap({
+          baseLayers: [
+            new WebTileLayer({
+              urlTemplate:
+                "http://wprd0{subDomain}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&style=7&x={col}&y={row}&z={level}&scl=1&ltype=3",
+              subDomains: ["1", "2", "3", "4"]
+            })
+          ],
+          title: "basemap",
+          id: "basemap"
+        }),
         layers: [permitsLayer]
       });
 
