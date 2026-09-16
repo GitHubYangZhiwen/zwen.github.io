@@ -11,7 +11,7 @@
 
 ## 使用
 
-直接访问 [https://githubyangzhiwen.github.io/zwen.github.io/](https://zwen.github.io) 即可。所有数据保存在浏览器本地，建议定期点击右上角 **导出备份** 留存 JSON 快照。
+直接访问 [https://githubyangzhiwen.github.io/zwen.github.io/](https://githubyangzhiwen.github.io/zwen.github.io/) 即可。所有数据保存在浏览器本地，建议定期点击右上角 **导出备份** 留存 JSON 快照。
 
 ## 技术
 
