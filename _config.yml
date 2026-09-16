@@ -1,1 +1,2 @@
-theme: jekyll-theme-slate
+# GitHub Pages 配置
+# 本站点为纯静态 HTML 应用（非 Jekyll 项目），theme 留空以禁用默认主题
