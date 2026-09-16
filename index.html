@@ -1,1 +1,1052 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/zwen.github.io/favicon.ico"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="Web site created using create-react-app"/><link rel="apple-touch-icon" href="/zwen.github.io/logo192.png"/><link rel="manifest" href="/zwen.github.io/manifest.json"/><title>React App</title><script src="https://cesium.com/downloads/cesiumjs/releases/1.91/Build/Cesium/Cesium.js"></script><link href="https://cesium.com/downloads/cesiumjs/releases/1.91/Build/Cesium/Widgets/widgets.css" rel="stylesheet"><link href="/zwen.github.io/static/css/2.a55abcc0.chunk.css" rel="stylesheet"><link href="/zwen.github.io/static/css/main.43341dfe.chunk.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><script>Cesium.Ion.defaultAccessToken="your_access_token",Cesium.Ion.defaultAccessToken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzZGZiNTI0Zi1lNTVmLTQ1ZjktODIzNS0yYjQ5ODg4MDk0NTAiLCJpZCI6MjU5LCJpYXQiOjE2NDYxNDYyMzB9.OZ0mWuymsiF9cR10FR_rZTMD7kA_FE7-uUGW6J7wBU4"</script><div id="root"></div><script>!function(e){function t(t){for(var n,i,a=t[0],c=t[1],l=t[2],s=0,p=[];s<a.length;s++)i=a[s],Object.prototype.hasOwnProperty.call(o,i)&&o[i]&&p.push(o[i][0]),o[i]=0;for(n in c)Object.prototype.hasOwnProperty.call(c,n)&&(e[n]=c[n]);for(f&&f(t);p.length;)p.shift()();return u.push.apply(u,l||[]),r()}function r(){for(var e,t=0;t<u.length;t++){for(var r=u[t],n=!0,a=1;a<r.length;a++){var c=r[a];0!==o[c]&&(n=!1)}n&&(u.splice(t--,1),e=i(i.s=r[0]))}return e}var n={},o={1:0},u=[];function i(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,i),r.l=!0,r.exports}i.e=function(e){var t=[],r=o[e];if(0!==r)if(r)t.push(r[2]);else{var n=new Promise((function(t,n){r=o[e]=[t,n]}));t.push(r[2]=n);var u,a=document.createElement("script");a.charset="utf-8",a.timeout=120,i.nc&&a.setAttribute("nonce",i.nc),a.src=function(e){return i.p+"static/js/"+({}[e]||e)+"."+{3:"2f20744c"}[e]+".chunk.js"}(e);var c=new Error;u=function(t){a.onerror=a.onload=null,clearTimeout(l);var r=o[e];if(0!==r){if(r){var n=t&&("load"===t.type?"missing":t.type),u=t&&t.target&&t.target.src;c.message="Loading chunk "+e+" failed.\n("+n+": "+u+")",c.name="ChunkLoadError",c.type=n,c.request=u,r[1](c)}o[e]=void 0}};var l=setTimeout((function(){u({type:"timeout",target:a})}),12e4);a.onerror=a.onload=u,document.head.appendChild(a)}return Promise.all(t)},i.m=e,i.c=n,i.d=function(e,t,r){i.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},i.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},i.t=function(e,t){if(1&t&&(e=i(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(i.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var n in e)i.d(r,n,function(t){return e[t]}.bind(null,n));return r},i.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return i.d(t,"a",t),t},i.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},i.p="/zwen.github.io/",i.oe=function(e){throw console.error(e),e};var a=this["webpackJsonpantd-demo"]=this["webpackJsonpantd-demo"]||[],c=a.push.bind(a);a.push=t,a=a.slice();for(var l=0;l<a.length;l++)t(a[l]);var f=c;r()}([])</script><script src="/zwen.github.io/static/js/2.e11e2b61.chunk.js"></script><script src="/zwen.github.io/static/js/main.688db28b.chunk.js"></script></body></html>
+<!-- 玩具之家 · 本地单文件版（数据存 localStorage，无需后端） -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>玩具之家 · 本地版</title>
+<style>
+/* ========== 基础变量 & 重置 ========== */
+:root{
+  --bg:#f3f4f8; --card:#ffffff; --ink:#2d2f33; --sub:#676e7e; --line:#ece5d8;
+  --brand:#b78b64; --brand-soft:#f4d8a8;
+  --green:#279070; --green-soft:#e3f5ed;
+  --red:#c0392b; --red-soft:#fbeae7;
+  --amber:#d4a017; --amber-soft:#fdf6e3;
+  --gold:#b78b64; --gold-soft:#f4d8a8;
+  --navy:#2d2f33;
+  --cream:#f0eae0; --cream-2:#dcc9a5;
+  --radius:12px; --shadow:0 1px 3px rgba(45,47,51,.05),0 4px 16px rgba(45,47,51,.06);
+  --safe:env(safe-area-inset-bottom);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:#f0f1f5;
+  color:var(--ink);font-size:15px;line-height:1.5;
+  padding:0 0 calc(20px + var(--safe));
+}
+/* ========== 布局 ========== */
+.main{flex:1;min-width:0;max-width:1280px;margin:0 auto;width:100%;padding:20px 24px calc(24px + var(--safe))}
+.app{display:flex;align-items:stretch;min-height:100vh}
+.sidebar{width:256px;flex:0 0 256px;background:var(--navy);border-right:none;
+  display:flex;flex-direction:column;position:sticky;top:0;height:100vh;padding:20px 16px;
+  transition:width .2s ease,flex-basis .2s ease,padding .2s ease,opacity .2s ease;overflow:hidden}
+.sidebar .brand .bt1,.sidebar .brand .bt2{color:#fff}
+.sidebar .menu-item{color:#cbbda7}
+.sidebar .menu-item:hover{background:rgba(255,255,255,.06);color:#fff}
+.sidebar .menu-item.active{background:var(--gold);color:#fff}
+.sidebar .side-foot .sync{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.12);color:#cbbda7}
+.sidebar .side-foot .dot{background:var(--gold-soft)}
+.sidebar .iconbtn{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.12);color:#fff}
+.sidebar .iconbtn:hover{background:rgba(255,255,255,.16)}
+.app.collapsed .sidebar{width:0;flex-basis:0;padding-left:0;padding-right:0;opacity:0;border-right:none}
+/* ========== 通用按钮 & 图标 ========== */
+.iconbtn{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;
+  border:1px solid var(--line);background:#fff;border-radius:10px;color:var(--ink);cursor:pointer;flex:0 0 auto;
+  transition:.15s;padding:0}
+.iconbtn:hover{background:#f5f7fb}
+.iconbtn svg{width:20px;height:20px}
+.btn{
+  min-height:44px;border:none;border-radius:var(--radius);padding:0 16px;font-size:15px;
+  font-weight:600;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  background:var(--gold);color:#fff;transition:.15s;
+}
+.btn:active{transform:scale(.97)}
+.btn:hover{filter:brightness(1.05)}
+.btn.ghost{background:#fff;color:var(--gold);border:1px solid var(--gold)}
+.btn.soft{background:var(--gold-soft);color:#91653f}
+.btn.plain{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.btn.danger{background:var(--red);color:#fff}
+.btn.warn{background:var(--amber);color:#fff}
+.btn.sm{min-height:38px;padding:0 12px;font-size:14px}
+.btn.accent{background:var(--brand);color:#fff;border-color:var(--brand)}
+.btn.loading{opacity:.7;pointer-events:none}
+.mini{min-height:34px;padding:0 10px;font-size:13px;border-radius:8px;border:1px solid var(--line);
+  background:#fff;color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;gap:4px}
+.mini.danger{border-color:#f0bcbc;color:var(--red)}
+.mini.primary{border-color:var(--brand);color:var(--brand)}
+.icon{width:18px;height:18px;flex:0 0 auto}
+.icon.sm{width:15px;height:15px}
+/* ========== 品牌 & 菜单 ========== */
+.brand{display:flex;align-items:center;gap:10px;padding:4px 8px 20px;
+  border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:8px}
+.brand::before{content:'玩';width:36px;height:36px;border-radius:10px;
+  background:linear-gradient(135deg,#c9a06a,#b78b64);color:#fff;font-weight:800;font-size:16px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  box-shadow:0 4px 12px rgba(183,139,100,.35)}
+.brand-txt .bt1{font-weight:800;font-size:15px;line-height:1.2;color:#fff}
+.brand-txt .bt2{font-size:11px;color:rgba(255,255,255,.5);margin-top:3px}
+.menu{display:flex;flex-direction:column;gap:4px;margin-top:0}
+.menu-item{display:flex;align-items:center;gap:12px;width:100%;text-align:left;
+  min-height:44px;padding:0 12px;border-radius:10px;border:none;background:transparent;
+  color:#cbbda7;font-size:14px;font-weight:500;cursor:pointer;transition:.15s}
+.menu-item:hover{background:rgba(255,255,255,.06);color:#fff}
+.menu-item.active{background:linear-gradient(135deg,#b78b64,#a07a54);color:#fff;font-weight:600}
+.side-foot{margin-top:auto;padding-top:14px}
+.side-foot .sync{font-size:11px}
+/* ========== 顶部栏 ========== */
+header.top{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:4px 0 12px;margin-bottom:4px;
+  background:linear-gradient(180deg, var(--bg) 60%, rgba(243,244,248,0.85));
+  backdrop-filter:blur(8px);
+}
+header.top h1{font-size:20px;margin:0;font-weight:700;letter-spacing:.5px}
+.spacer{flex:1}
+.sync{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--sub);
+  background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 10px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--green)}
+.toolbtns{display:flex;gap:8px;flex-wrap:wrap}
+.top-note{font-size:12px;color:var(--sub);margin:-4px 4px 12px}
+#refreshTime{font-size:12px;color:var(--sub)}
+/* ========== 卡片 ========== */
+.section-panel{display:none}
+.section-panel.active{display:block}
+.card{background:var(--card);border:1px solid rgba(236,229,216,.8);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:20px;margin-bottom:18px}
+.card h2{font-size:16px;margin:0 0 14px;display:flex;align-items:center;gap:10px;
+  padding-bottom:12px;border-bottom:1px solid var(--line)}
+.card h2 .ic{width:20px;height:20px;color:var(--gold)}
+.muted{color:var(--sub);font-size:13px}
+/* ========== 弹窗 ========== */
+.modal-mask{position:fixed;inset:0;background:rgba(15,23,42,.45);display:none;align-items:center;justify-content:center;z-index:200;padding:16px}
+.modal{background:#fff;border-radius:16px;width:min(520px,94vw);max-height:84vh;overflow:auto;padding:18px 18px 14px;box-shadow:0 12px 40px rgba(0,0,0,.18)}
+.modal h3{margin:0 0 4px;font-size:16px;font-weight:800}
+.modal .sub{font-size:12px;color:var(--sub);margin:0 0 10px;line-height:1.5}
+.modal textarea{width:100%;height:240px;resize:vertical;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;line-height:1.5;border:1px solid var(--line);border-radius:10px;padding:10px;box-sizing:border-box;background:#fafbfc;color:var(--ink)}
+.modal-btns{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+@media (max-width:768px){ .modal textarea{height:200px} }
+/* ========== 阈值 ========== */
+.thresh-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px;
+  background:var(--brand-soft);border-radius:10px;padding:10px 12px}
+.thresh-bar label{font-size:13px;font-weight:600;color:var(--brand)}
+.thresh-bar input{width:90px;min-height:38px;font-size:16px}
+/* ========== 徽章 ========== */
+.badge{font-size:12px;font-weight:700;padding:3px 8px;border-radius:999px}
+.badge.red{background:var(--red);color:#fff}
+.badge.green{background:var(--green);color:#fff}
+.badge.amber{background:var(--amber);color:#fff}
+.badge.gray{background:#eef0f3;color:var(--sub)}
+/* ========== 表单 ========== */
+.form{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:12px}
+.field{display:flex;flex-direction:column;gap:4px}
+.field.full{grid-column:1/-1}
+.field label{font-size:12px;color:var(--sub);font-weight:600}
+input,select{
+  min-height:44px;border:1px solid var(--line);border-radius:10px;padding:0 12px;
+  font-size:16px;font-family:inherit;background:#fff;color:var(--ink);width:100%;
+}
+input:focus,select:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+.form-actions{grid-column:1/-1;display:flex;gap:10px;flex-wrap:wrap}
+/* ========== 统计概览 ========== */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;text-align:center;
+  position:relative;overflow:hidden}
+.stat::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--brand-soft);opacity:0}
+.stat.g::before{opacity:1;background:linear-gradient(90deg,#279070,#4ade80)}
+.stat.r::before{opacity:1;background:linear-gradient(90deg,#c0392b,#f87171)}
+.stat.b::before{opacity:1;background:linear-gradient(90deg,#b78b64,#d4a574)}
+.stat .v{font-size:24px;font-weight:800;line-height:1.1}
+.stat .k{font-size:12px;color:var(--sub);margin-top:4px;letter-spacing:.5px}
+.stat.g .v{color:var(--green)} .stat.r .v{color:var(--red)} .stat.b .v{color:var(--brand)}
+/* ========== 表格 ========== */
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:14px}
+th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle}
+th{font-size:12px;color:var(--sub);font-weight:700;background:#fafbfc;letter-spacing:.5px;
+  position:sticky;top:0;z-index:1}
+tbody tr:hover{background:rgba(183,139,100,.04)}
+td.rate{font-weight:800;font-size:15px}
+td.rate.ok{color:var(--green)} td.rate.low{color:var(--red)}
+.row-actions{display:flex;gap:6px;flex-wrap:wrap}
+tr.flash{animation:flash 1.6s ease}
+@keyframes flash{0%,30%{background:var(--amber-soft)}100%{background:transparent}}
+/* ========== 图表 ========== */
+.chart-wrap{width:100%;overflow-x:auto}
+svg.chart{display:block;width:100%;min-width:320px;height:auto}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;font-size:12px;color:var(--sub)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:middle}
+/* ========== BOLL 迷你图 ========== */
+.bollcell{display:flex;flex-direction:column;gap:2px;min-width:100px}
+.bollmini{width:100px;height:32px;display:block}
+.bollnum{font-size:10px;color:var(--sub);line-height:1.25;white-space:nowrap}
+/* ========== 空状态 ========== */
+.empty{text-align:center;color:var(--sub);padding:22px 10px;font-size:14px}
+/* ========== 备份提示 ========== */
+#bkTip{display:none;background:var(--amber-soft);border:1px solid #f3d9a8;color:#8a5a00;
+  border-radius:10px;padding:10px 12px;font-size:13px;margin-bottom:14px}
+/* ========== Toast ========== */
+.toast{position:fixed;left:50%;bottom:calc(24px + var(--safe));transform:translateX(-50%) translateY(20px);
+  background:#1f2937;color:#fff;padding:10px 16px;border-radius:10px;font-size:13px;
+  opacity:0;pointer-events:none;transition:all .25s ease;z-index:99;max-width:90vw;text-align:center;
+  box-shadow:0 6px 20px rgba(0,0,0,.18)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+/* ========== 撒网捕鱼 ========== */
+.fishrow{margin-bottom:18px}
+.fishhd{display:flex;justify-content:space-between;align-items:baseline;gap:8px;
+  font-size:12px;color:var(--sub);margin:0 0 2px}
+.fishhd .fnm{font-size:14px;font-weight:700;color:var(--ink)}
+.fishhd .fsub{font-size:11px;color:var(--sub);font-weight:400;margin-left:5px}
+.fishsvg{display:block;width:100%;height:auto;margin-top:2px}
+.fishtbl{width:100%;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums}
+.fishtbl th,.fishtbl td{padding:6px 3px;text-align:right;border-bottom:1px solid var(--line)}
+.fishtbl th:first-child,.fishtbl td:first-child{text-align:left}
+.fishtbl th{font-size:11px;color:var(--sub);font-weight:600;background:#fafbfc;white-space:nowrap}
+.fishtbl td.ok{color:var(--green);font-weight:700}
+.fishtbl td.no{color:var(--sub)}
+.fishtbl .lag{display:block;font-size:9px;opacity:.8;margin-top:1px}
+.fishtbl td.cur{color:var(--red);font-weight:700}
+.fishsum{cursor:pointer;font-size:13px;font-weight:600;color:var(--brand);
+  padding:9px 2px;user-select:none;display:flex;align-items:center;gap:6px;min-height:44px}
+.fishsum:hover{opacity:.8}
+.fishfold{border-top:1px solid var(--line);margin-top:8px;padding-top:4px}
+@media(max-width:767px){
+  .fishtbl{font-size:11px}
+  .fishtbl th,.fishtbl td{padding:5px 2px}
+}
+/* ========== Footer ========== */
+footer{text-align:center;color:#9aa3af;font-size:12px;padding:8px 0 0}
+/* ========== 移动端 (≤768px) ========== */
+.tabbar{display:none}
+@media (max-width:768px){
+  .app{flex-direction:column}
+  .sidebar{display:none}
+  #toggleSidebar{display:none}
+  .main{padding:14px 14px calc(78px + var(--safe))}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .form{grid-template-columns:1fr}
+  .hide-sm{display:none}
+  th.hide-sm,td.hide-sm{display:none}
+  .tabbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;
+    background:#fff;border-top:1px solid var(--line);
+    padding:6px 2px calc(6px + var(--safe));justify-content:space-around;
+    box-shadow:0 -2px 12px rgba(16,24,40,.06)}
+  .tabbar .tab{display:flex;flex-direction:column;align-items:center;flex:1;gap:3px;
+    border:none;background:transparent;color:var(--sub);font-size:11px;font-weight:600;
+    cursor:pointer;min-height:50px;justify-content:center}
+  .tabbar .tab svg{width:22px;height:22px}
+  .tabbar .tab .tab-label{font-size:10px;line-height:1.1;max-width:48px;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .tabbar .tab.active{color:var(--brand)}
+}
+</style>
+<meta name="theme-color" content="#332849">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="玩具之家">
+</head>
+<body>
+
+<!-- ========== 主应用 ========== -->
+<div class="app">
+
+  <!-- 左侧边栏 -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-txt"><div class="bt1">玩具之家</div><div class="bt2">本地工作台 · v2.0</div></div>
+    </div>
+    <nav class="menu">
+      <button class="menu-item active" data-target="detect">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M6 12v8"/><path d="M12 7v13"/><path d="M18 4v16"/></svg>
+        <span>赠品排行</span>
+      </button>
+      <button class="menu-item" data-target="pool">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96L12 12.01l8.73-5.05"/><path d="M12 22.08V12"/></svg>
+        <span>玩具池</span>
+      </button>
+      <button class="menu-item" data-target="boll">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20v-9a2 2 0 0 0-4 0v9"/><path d="M13 20v-13a2 2 0 0 0-4 0v13"/><path d="M19 20v-7a2 2 0 0 0-4 0v7"/></svg>
+        <span>布林</span>
+      </button>
+      <button class="menu-item" data-target="fish">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17c2.5 0 3.5-2 6-2s3.5 2 6 2 3.5-2 6-2"/><path d="M3 7c2.5 0 3.5 2 6 2s3.5-2 6-2 3.5 2 6 2"/><circle cx="9" cy="12" r="1.6" fill="currentColor"/></svg>
+        <span>撒网捕鱼</span>
+      </button>
+    </nav>
+    <div class="side-foot"><span class="sync"><span class="dot"></span>本地存储 · 已保存</span></div>
+  </aside>
+
+  <!-- 主内容区 -->
+  <main class="main">
+    <header class="top">
+      <button aria-label="收起或展开左侧菜单" class="iconbtn" id="toggleSidebar" title="收起/展开菜单"></button>
+      <h1 id="topTitle">赠品排行</h1>
+      <div class="spacer"></div>
+      <div class="toolbtns">
+        <button class="btn ghost sm" id="btnExport">导出备份</button>
+        <button class="btn plain sm" id="btnImport">导入恢复</button>
+      </div>
+      <span class="sync"><span class="dot"></span>本地 · 已保存</span>
+    </header>
+    <div class="top-note">数据存于浏览器本地（localStorage），不上传任何服务器。建议定期点右上「导出备份」留存 JSON 快照。</div>
+
+    <div id="bkTip">数据已积累较多，建议点右上「导出备份」留存一份 JSON 快照。</div>
+
+    <!-- 切换面板 -->
+    <div id="panel">
+
+      <!-- 赠品排行 -->
+      <section class="card section-panel active" id="detect">
+        <h2><svg class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 20h18"/><path d="M6 12v8"/><path d="M12 7v13"/><path d="M18 4v16"/></svg>赠品排行</h2>
+        <div class="thresh-bar">
+          <label for="thresh">目标赠品率阈值</label>
+          <input id="thresh" min="0" step="0.1" type="number" value="5.5">
+          <span class="muted">%（≥ 视为达标高赠，&lt; 视为需关注）</span>
+        </div>
+        <div class="stats" id="stats"></div>
+        <div class="toolbtns" style="margin-bottom:10px">
+          <button class="mini primary" id="sortRate">按赠品率排序</button>
+          <button class="mini" id="exportCsv">导出潮玩 CSV</button>
+        </div>
+        <div class="chart-wrap"><svg class="chart" id="barChart" preserveAspectRatio="xMidYMid meet" viewBox="0 0 700 260"></svg></div>
+        <div style="margin-top:12px; overflow-x:auto">
+          <table id="detTable">
+            <thead><tr>
+              <th>名称 / 代码</th><th class="hide-sm">行业</th><th>现价</th><th>每只赠品</th>
+              <th>赠品率</th><th>判定</th><th>日BOLL</th><th>周BOLL</th>
+            </tr></thead>
+            <tbody id="detBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 玩具池 -->
+      <section class="card section-panel" id="pool">
+        <h2><svg class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96L12 12.01l8.73-5.05"/><path d="M12 22.08V12"/></svg>玩具池</h2>
+        <div class="toolbtns" style="margin-bottom:12px">
+          <button class="btn soft sm" id="toggleForm">添加潮玩</button>
+          <button class="mini" id="clearSamples">清空数据</button>
+          <button class="mini primary" id="loadSamples">载入示例</button>
+        </div>
+        <div class="toolbtns" style="margin-bottom:14px">
+          <button class="btn accent sm" id="refreshPrice">
+            <svg class="icon sm" fill="none" viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 13.7-5.7M20 12a8 8 0 0 1-13.7 5.7" stroke="currentColor" stroke-linecap="round" stroke-width="2"/><path d="M17 3v4h-4M7 21v-4h4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+            刷新现价（腾讯）
+          </button>
+          <span id="refreshTime">尚未刷新</span>
+        </div>
+        <form class="form" id="stockForm" style="display:none">
+          <div class="field"><label>潮玩代码</label><input id="f_code" placeholder="如 601398" required></div>
+          <div class="field"><label>潮玩名称</label><input id="f_name" placeholder="如 工商银行" required></div>
+          <div class="field"><label>现价（¥）</label><input id="f_price" min="0.01" placeholder="如 6.50" required step="0.01" type="number"></div>
+          <div class="field"><label>每只年度赠品（¥）</label><input id="f_div" min="0" placeholder="如 0.31" required step="0.01" type="number"></div>
+          <div class="field hide-sm"><label>行业</label><input id="f_ind" placeholder="如 银行"></div>
+          <div class="field hide-sm"><label>备注</label><input id="f_note" placeholder="选填"></div>
+          <div class="form-actions">
+            <button class="btn" id="submitBtn" type="submit">保存潮玩</button>
+            <button class="btn plain" id="cancelEdit" type="button">取消</button>
+          </div>
+        </form>
+        <div style="overflow-x:auto">
+          <table id="poolTable">
+            <thead><tr>
+              <th>代码</th><th>名称</th><th class="hide-sm">行业</th><th>现价</th><th>赠品</th><th>赠品率</th><th>操作</th>
+            </tr></thead>
+            <tbody id="poolBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 布林 -->
+      <section class="card section-panel" id="boll">
+        <h2><svg class="ic" fill="none" viewBox="0 0 24 24"><path d="M7 20v-9a2 2 0 0 0-4 0v9 M13 20v-13a2 2 0 0 0-4 0v13 M19 20v-7a2 2 0 0 0-4 0v7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>布林</h2>
+        <div class="top-note">点「玩具池 → 刷新现价（腾讯）」拉取后，这里显示每只潮玩的日 / 周布林带。蓝点 = 当前价位置，绿线 = 上下轨，灰虚线 = 中轨(MA20)。</div>
+        <div style="overflow-x:auto">
+          <table id="bollTable">
+            <thead><tr>
+              <th>代码</th><th>名称</th><th>日BOLL</th><th>周BOLL</th>
+            </tr></thead>
+            <tbody id="bollBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 撒网捕鱼 -->
+      <section class="card section-panel" id="fish">
+        <h2><svg class="ic" fill="none" viewBox="0 0 24 24"><path d="M3 17c2.5 0 3.5-2 6-2s3.5 2 6 2 3.5-2 6-2M3 7c2.5 0 3.5 2 6 2s3.5-2 6-2 3.5 2 6 2" stroke="currentColor" stroke-linecap="round" stroke-width="2"/><circle cx="9" cy="12" r="1.6" fill="currentColor"/></svg>撒网捕鱼</h2>
+        <div class="top-note">按当前每只赠品（分红）反推：股息率 4% → 7%（步进 0.5%）各自对应的股价。<b>实心绿点 = 已入网</b>（当前股息率已达标），<b>空心灰点 = 待捕</b>（还需下跌到该价）。红竖线 = 现价位置。</div>
+        <div id="fishBody"></div>
+        <div class="fishfold">
+          <details id="fishFold">
+            <summary class="fishsum">展开价格矩阵表（精确查价）</summary>
+            <div style="overflow-x:auto"><table class="fishtbl" id="fishTable"></table></div>
+          </details>
+        </div>
+      </section>
+
+    </div><!-- /panel -->
+
+    <footer>玩具之家 v2.0 · 本地单文件版 · 数据存于浏览器 localStorage</footer>
+  </main>
+</div><!-- /app -->
+
+<!-- ========== 移动端底部 Tab ========== -->
+<nav class="tabbar">
+  <button class="tab" data-target="detect">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M6 12v8"/><path d="M12 7v13"/><path d="M18 4v16"/></svg>
+    <span class="tab-label">赠品排行</span>
+  </button>
+  <button class="tab" data-target="pool">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96L12 12.01l8.73-5.05"/><path d="M12 22.08V12"/></svg>
+    <span class="tab-label">玩具池</span>
+  </button>
+  <button class="tab" data-target="boll">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20v-9a2 2 0 0 0-4 0v9"/><path d="M13 20v-13a2 2 0 0 0-4 0v13"/><path d="M19 20v-7a2 2 0 0 0-4 0v7"/></svg>
+    <span class="tab-label">布林</span>
+  </button>
+  <button class="tab" data-target="fish">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17c2.5 0 3.5-2 6-2s3.5 2 6 2 3.5-2 6-2"/><path d="M3 7c2.5 0 3.5 2 6 2s3.5-2 6-2 3.5 2 6 2"/><circle cx="9" cy="12" r="1.6" fill="currentColor"/></svg>
+    <span class="tab-label">撒网捕鱼</span>
+  </button>
+</nav>
+
+<!-- ========== 隐藏文件选择控件 ========== -->
+<input accept="application/json,.json" id="importFile" type="file" style="display:none">
+
+<!-- ========== 导出备份弹窗 ========== -->
+<div class="modal-mask" id="exportModal">
+  <div class="modal">
+    <h3>导出备份（JSON）</h3>
+    <p class="sub">可点「下载文件」保存；若浏览器未自动下载，点「复制文本」粘到备忘录/文件传输助手即可。导入时选此文件。</p>
+    <textarea id="exportText" readonly></textarea>
+    <div class="modal-btns">
+      <button class="btn ghost sm" id="exportDownload">下载文件</button>
+      <button class="btn plain sm" id="exportCopy">复制文本</button>
+      <button class="btn soft sm" id="exportClose">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 导出潮玩 CSV 弹窗 ========== -->
+<div class="modal-mask" id="csvModal">
+  <div class="modal">
+    <h3>导出潮玩 CSV</h3>
+    <p class="sub">可点「下载文件」保存为 .csv（Excel / WPS 直接打开）；若浏览器未自动下载，点「复制文本」粘贴到表格软件同样可用。</p>
+    <textarea id="csvText" readonly></textarea>
+    <div class="modal-btns">
+      <button class="btn ghost sm" id="csvDownload">下载文件</button>
+      <button class="btn plain sm" id="csvCopy">复制文本</button>
+      <button class="btn soft sm" id="csvClose">关闭</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ========================================================================
+ * 玩具之家 v2.0 —— 本地单文件版
+ * 存储：localStorage（无后端、无登录、无 Service Worker）
+ * ====================================================================== */
+(function(){
+  "use strict";
+
+  /* ========== 常量 ========== */
+  var K='wb_dividend_';
+  var LS_KEYS = { stocks:K+'stocks', recs:K+'recs', settings:K+'settings', section:K+'section', sidebar:K+'sidebar' };
+
+  function rd(k,d){ try{var v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch(e){return d;} }
+  function wt(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+  function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
+
+  /* ========== 状态 ========== */
+  var state={
+    stocks: [],
+    recs: [],
+    thresh: 5.5,
+    editId:null,
+    sortByRate:false,
+    lastRefresh: null,
+    boll: {}
+  };
+
+  /* ========== 示例预置 ========== */
+  function buildSeedStocks(){
+    return [
+      {id:'mtk7l5shxtdd3',code:'601318',name:'中国平安',price:58.24,dividend:2.73,industry:'保险',note:''},
+      {id:'mtk7l5siphjds',code:'000333',name:'美的集团',price:87.57,dividend:4.2,industry:'家电',note:''},
+      {id:'mtk7l5siwadtt',code:'600941',name:'中国移动',price:100.3,dividend:4.711,industry:'通信',note:''},
+      {id:'mtk7l5si8ms9d',code:'601728',name:'中国电信',price:6.38,dividend:0.25,industry:'通信',note:''},
+      {id:'mtk7l5sitkp53',code:'601919',name:'中远海控',price:16.06,dividend:0.87,industry:'航运',note:''},
+      {id:'mtk7l5siu0xnh',code:'601857',name:'中国石油',price:11.17,dividend:0.51,industry:'石油',note:''},
+      {id:'mtk7l5si2efcc',code:'600795',name:'国电电力',price:5.37,dividend:0.241,industry:'电力',note:''},
+      {id:'mtk7l5si74n14',code:'600690',name:'海尔智家',price:22,dividend:1.16,industry:'家电',note:''},
+      {id:'mtk7l5si7onn7',code:'601166',name:'兴业银行',price:18.22,dividend:1.066,industry:'银行',note:''},
+      {id:'mtk7l5sih2mqb',code:'000538',name:'云南白药',price:51.02,dividend:2.62,industry:'医药',note:''},
+      {id:'mtk7l5sip8zno',code:'600011',name:'华能国际',price:6.86,dividend:0.4,industry:'电力',note:''},
+      {id:'mtk7l5siad1ds',code:'600887',name:'伊利股份',price:26.86,dividend:1.38,industry:'食品',note:''},
+      {id:'mtk7l5si8rnvy',code:'600036',name:'招商银行',price:41.69,dividend:2.016,industry:'银行',note:''},
+      {id:'mtnz1v168chwd',code:'001286',name:'陕西能源',price:9.58,dividend:0.41,industry:'',note:''},
+      {id:'mtnz31yjj78oq',code:'600750',name:'华润江中',price:23.44,dividend:1.38,industry:'',note:''},
+      {id:'mtnz46n7wymve',code:'000423',name:'东阿阿胶',price:48.55,dividend:2.78,industry:'',note:''},
+      {id:'mtnz552j3bc24',code:'600900',name:'长江电力',price:28.42,dividend:1,industry:'',note:''},
+      {id:'mtnz6760jas1o',code:'600096',name:'云天化',price:30.8,dividend:1.4,industry:'',note:''},
+      {id:'mtnz8qdmn87m5',code:'000807',name:'云铝股份',price:26.95,dividend:1.27,industry:'',note:''}
+    ];
+  }
+
+  /* ========== 持久化（localStorage） ========== */
+  function persist(){
+    wt(LS_KEYS.stocks, state.stocks);
+    wt(LS_KEYS.recs, state.recs);
+    wt(LS_KEYS.settings, { thresh:state.thresh, lastRefresh:state.lastRefresh, boll:state.boll });
+    checkBackupTip();
+  }
+
+  /* ========== 工具函数 ========== */
+  function rate(s){ return s.price>0 ? (s.dividend/s.price*100) : 0; }
+  function fmt(n,d){ return Number(n).toFixed(d===undefined?2:d); }
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+
+  /* ========== BOLL 计算 + 迷你图 ========== */
+  function calcBoll(closes,N){
+    N=N||20;
+    if(!closes||closes.length<N) return null;
+    var s=closes.slice(closes.length-N), sum=0,i;
+    for(i=0;i<s.length;i++) sum+=s[i];
+    var mid=sum/s.length, va=0;
+    for(i=0;i<s.length;i++){ var d=s[i]-mid; va+=d*d; }
+    var sd=Math.sqrt(va/s.length);
+    return {mid:mid, up:mid+2*sd, down:mid-2*sd};
+  }
+  function getWeekNum(d){
+    var t=new Date(d.getFullYear(),0,1);
+    var day=Math.floor((d-t)/86400000);
+    return Math.ceil((day+(t.getDay()||7)-1)/7);
+  }
+  function weekCloses(klines){
+    var w={};
+    klines.forEach(function(k){
+      var d=new Date(k[0]); if(isNaN(d)) return;
+      w[d.getFullYear()+'-'+getWeekNum(d)]=parseFloat(k[2]);
+    });
+    return Object.keys(w).sort().map(function(k){return w[k];});
+  }
+  function bollCell(b, price){
+    if(!b) return '<span class="muted">—</span>';
+    var W=96,H=32,pad=5;
+    var lo=Math.min(b.down,price), hi=Math.max(b.up,price);
+    if(hi<=lo) hi=lo+1;
+    function Y(v){ return pad+(H-2*pad)*(1-(v-lo)/(hi-lo)); }
+    var up=Y(b.up), mid=Y(b.mid), down=Y(b.down), cur=Y(price);
+    var s='<div class="bollcell">';
+    s+='<svg class="bollmini" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="xMidYMid meet">';
+    s+='<line x1="8" y1="'+up+'" x2="'+(W-8)+'" y2="'+up+'" stroke="#16a34a" stroke-width="1.2"/>';
+    s+='<line x1="8" y1="'+down+'" x2="'+(W-8)+'" y2="'+down+'" stroke="#16a34a" stroke-width="1.2"/>';
+    s+='<line x1="8" y1="'+mid+'" x2="'+(W-8)+'" y2="'+mid+'" stroke="#9aa3af" stroke-width="1" stroke-dasharray="3 2"/>';
+    s+='<circle cx="'+(W/2)+'" cy="'+cur+'" r="3.2" fill="#1d4ed8" stroke="#fff" stroke-width="1"/>';
+    s+='</svg>';
+    s+='<div class="bollnum">上'+fmt(b.up)+'·中'+fmt(b.mid)+'·下'+fmt(b.down)+'</div>';
+    s+='</div>';
+    return s;
+  }
+
+  /* ========== 渲染：赠品排行 ========== */
+  function renderDetect(){
+    document.getElementById('thresh').value=state.thresh;
+    var arr=state.stocks.slice();
+    if(state.sortByRate) arr.sort(function(a,b){return rate(b)-rate(a);});
+    var ok=arr.filter(function(s){return rate(s)>=state.thresh;}).length;
+    var lowN=arr.length-ok;
+    var hi=arr.length?Math.max.apply(null,arr.map(rate)):0;
+    var avg=arr.length?arr.reduce(function(a,s){return a+rate(s);},0)/arr.length:0;
+    document.getElementById('stats').innerHTML=
+      stat(ok,'达标数','g')+stat(lowN,'需关注','r')+stat(fmt(hi)+'%','最高赠品率','b')+stat(fmt(avg)+'%','平均赠品率','b');
+
+    var body=document.getElementById('detBody');
+    if(!arr.length){ body.innerHTML='<tr><td colspan="8" class="empty">还没有潮玩，去下方「玩具池」添加一只吧</td></tr>'; }
+    else{
+      body.innerHTML=arr.map(function(s){
+        var r=rate(s), pass=r>=state.thresh;
+        return '<tr id="row_'+s.id+'">'+
+          '<td><b>'+esc(s.name)+'</b><br><span class="muted">'+esc(s.code)+'</span></td>'+
+          '<td class="hide-sm">'+esc(s.industry||'-')+'</td>'+
+          '<td>¥'+fmt(s.price)+'</td>'+
+          '<td>¥'+fmt(s.dividend)+'</td>'+
+          '<td class="rate '+(pass?'ok':'low')+'">'+fmt(r)+'%</td>'+
+          '<td>'+(pass?'<span class="badge green">达标</span>':'<span class="badge red">低于目标</span>')+'</td>'+
+          '<td>'+bollCell(state.boll[s.id]?state.boll[s.id].day:null, s.price)+'</td>'+
+          '<td>'+bollCell(state.boll[s.id]?state.boll[s.id].week:null, s.price)+'</td>'+
+        '</tr>';
+      }).join('');
+    }
+    drawBars(arr);
+  }
+  function stat(v,k,c){ return '<div class="stat '+(c||'')+'"><div class="v">'+v+'</div><div class="k">'+k+'</div></div>'; }
+
+  function drawBars(arr){
+    var svg=document.getElementById('barChart');
+    if(!arr.length){ svg.innerHTML=''; return; }
+    var H=260,padL=40,padR=10,padT=14,padB=46;
+    var W=Math.max(700, arr.length*52);
+    svg.setAttribute('viewBox','0 0 '+W+' '+H);
+    svg.style.width=W+'px';
+    var max=Math.max.apply(null,arr.map(rate).concat([state.thresh,1]))*1.1;
+    var n=arr.length, bw=Math.min(70,(W-padL-padR)/n*0.6);
+    var gap=(W-padL-padR)/n;
+    var h=H-padT-padB;
+    var s='<line x1="'+padL+'" y1="'+padT+'" x2="'+padL+'" y2="'+(H-padB)+'" stroke="#cbd5e1"/>';
+    s+='<line x1="'+padL+'" y1="'+(H-padB)+'" x2="'+(W-padR)+'" y2="'+(H-padB)+'" stroke="#cbd5e1"/>';
+    var ty=padT+h-(state.thresh/max)*h;
+    s+='<line x1="'+padL+'" y1="'+ty+'" x2="'+(W-padR)+'" y2="'+ty+'" stroke="#d97706" stroke-dasharray="5 4" stroke-width="1.5"/>';
+    s+='<text x="'+(W-padR)+'" y="'+(ty-4)+'" text-anchor="end" font-size="11" fill="#d97706">阈值 '+fmt(state.thresh)+'%</text>';
+    arr.forEach(function(st,i){
+      var r=rate(st), bh=(r/max)*h, x=padL+gap*i+(gap-bw)/2, y=padT+h-bh;
+      var col=r>=state.thresh?'#16a34a':'#dc2626';
+      s+='<rect x="'+x+'" y="'+y+'" width="'+bw+'" height="'+bh+'" rx="4" fill="'+col+'"/>';
+      s+='<text x="'+(x+bw/2)+'" y="'+(y-5)+'" text-anchor="middle" font-size="11" fill="#374151" font-weight="700">'+fmt(r)+'%</text>';
+      var lbl=st.name.length>4?st.name.slice(0,4):st.name;
+      s+='<text x="'+(x+bw/2)+'" y="'+(H-padB+16)+'" text-anchor="middle" font-size="11" fill="#6b7280">'+esc(lbl)+'</text>';
+      s+='<text x="'+(x+bw/2)+'" y="'+(H-padB+30)+'" text-anchor="middle" font-size="10" fill="#9aa3af">'+esc(st.code)+'</text>';
+    });
+    svg.innerHTML=s;
+  }
+
+  /* ========== 渲染：玩具池 ========== */
+  function renderPool(){
+    var body=document.getElementById('poolBody');
+    if(!state.stocks.length){ body.innerHTML='<tr><td colspan="7" class="empty">暂无潮玩，点「添加潮玩」开始</td></tr>'; return; }
+    body.innerHTML=state.stocks.map(function(s){
+      var r=rate(s), pass=r>=state.thresh;
+      return '<tr id="prow_'+s.id+'">'+
+        '<td>'+esc(s.code)+'</td><td><b>'+esc(s.name)+'</b></td>'+
+        '<td class="hide-sm">'+esc(s.industry||'-')+'</td>'+
+        '<td>¥'+fmt(s.price)+'</td><td>¥'+fmt(s.dividend)+'</td>'+
+        '<td class="rate '+(pass?'ok':'low')+'">'+fmt(r)+'%</td>'+
+        '<td><div class="row-actions">'+
+          '<button class="mini primary" onclick="WB.edit(\''+s.id+'\')">编辑</button>'+
+          '<button class="mini danger" onclick="WB.del(\''+s.id+'\')">删除</button>'+
+        '</div></td>'+
+      '</tr>';
+    }).join('');
+  }
+
+  /* ========== 渲染：布林 ========== */
+  function renderBoll(){
+    var body=document.getElementById('bollBody');
+    if(!state.stocks.length){ body.innerHTML='<tr><td colspan="4" class="empty">暂无潮玩，去「玩具池」添加并刷新</td></tr>'; return; }
+    body.innerHTML=state.stocks.map(function(s){
+      return '<tr id="brow_'+s.id+'">'+
+        '<td>'+esc(s.code)+'</td><td><b>'+esc(s.name)+'</b></td>'+
+        '<td>'+bollCell(state.boll[s.id]?state.boll[s.id].day:null, s.price)+'</td>'+
+        '<td>'+bollCell(state.boll[s.id]?state.boll[s.id].week:null, s.price)+'</td>'+
+      '</tr>';
+    }).join('');
+  }
+
+  /* ========== 备份提示 ========== */
+  function checkBackupTip(){
+    var n=state.stocks.length+state.recs.length;
+    document.getElementById('bkTip').style.display = n>=30 ? 'block':'none';
+  }
+
+  /* ========== 腾讯行情：刷新现价 & BOLL ========== */
+  function prefixOf(code){
+    code=String(code||'').trim();
+    if(/^6/.test(code)) return 'sh';
+    if(/^(0|3)/.test(code)) return 'sz';
+    if(/^[48]/.test(code)) return 'bj';
+    if(/^9/.test(code)) return 'sh';
+    return 'sh';
+  }
+  function toast(msg){
+    var t=document.getElementById('toast');
+    if(!t){ t=document.createElement('div'); t.id='toast'; t.className='toast'; document.body.appendChild(t); }
+    t.textContent=msg; t.classList.add('show');
+    clearTimeout(t._timer); t._timer=setTimeout(function(){t.classList.remove('show');},2800);
+  }
+  function showRefreshTime(){
+    var el=document.getElementById('refreshTime'); if(!el) return;
+    if(state.lastRefresh){
+      var d=new Date(state.lastRefresh), p=function(n){return (n<10?'0':'')+n;};
+      el.textContent='最后更新：'+d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes());
+    } else { el.textContent='尚未刷新'; }
+  }
+  function refreshSpot(){
+    return new Promise(function(resolve){
+      if(!state.stocks.length){ resolve(0); return; }
+      var q=state.stocks.map(function(s){return prefixOf(s.code)+s.code;}).join(',');
+      var sc=document.createElement('script'); var settled=false;
+      function done(){
+        if(settled) return; settled=true;
+        try{document.body.removeChild(sc);}catch(e){}
+        var ok=0;
+        state.stocks.forEach(function(st){
+          var raw=window['v_'+prefixOf(st.code)+st.code];
+          if(raw){ var p=parseFloat(String(raw).split('~')[3]); if(p>0){ st.price=p; ok++; } }
+        });
+        resolve(ok);
+      }
+      sc.onload=function(){ setTimeout(done,300); };
+      sc.onerror=function(){ resolve(0); };
+      sc.src='https://qt.gtimg.cn/q='+encodeURIComponent(q);
+      document.body.appendChild(sc);
+      setTimeout(done,6000);
+    });
+  }
+  function fetchBoll(stock){
+    return new Promise(function(resolve){
+      var code=prefixOf(stock.code)+stock.code;
+      var varName='_boll_'+code;
+      var url='https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param='+code+',day,,,320,qfq&_var='+varName;
+      var sc=document.createElement('script'); var done=false;
+      function settle(){
+        if(done) return; done=true;
+        try{document.body.removeChild(sc);}catch(e){}
+        try{
+          var res=window[varName]; window[varName]=null;
+          var node=res&&res.data&&res.data[code]&&(res.data[code].qfqday||res.data[code].day);
+          if(node&&node.length>=20){
+            var closes=node.map(function(k){return parseFloat(k[2]);});
+            resolve({day:calcBoll(closes,20), week:calcBoll(weekCloses(node),20)});
+          } else resolve(null);
+        }catch(e){ resolve(null); }
+      }
+      sc.onload=function(){ setTimeout(settle,150); };
+      sc.onerror=function(){ resolve(null); };
+      sc.src=url; document.body.appendChild(sc);
+      setTimeout(settle,6000);
+    });
+  }
+  function refreshPrices(silent){
+    var btn=document.getElementById('refreshPrice');
+    if(!state.stocks.length){ if(!silent) alert('玩具池为空，先添加潮玩再刷新'); return; }
+    if(btn.disabled) return;
+    btn.disabled=true; btn.classList.add('loading');
+    btn.innerHTML='<svg class="icon sm" viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 0 1 13.7-5.7M20 12a8 8 0 0 1-13.7 5.7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M17 3v4h-4M7 21v-4h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 刷新中…';
+    var tasks=[ refreshSpot() ];
+    state.stocks.forEach(function(st){
+      tasks.push(fetchBoll(st).then(function(b){
+        if(b) state.boll[st.id]={day:b.day, week:b.week, updated:new Date().toISOString()};
+      }));
+    });
+    Promise.all(tasks).then(function(res){
+      var okSpot=res[0]||0;
+      var okBoll=state.stocks.filter(function(s){return state.boll[s.id]&&state.boll[s.id].day;}).length;
+      state.lastRefresh=new Date().toISOString();
+      persist(); all(); showRefreshTime();
+      btn.disabled=false; btn.classList.remove('loading');
+      btn.innerHTML='<svg class="icon sm" viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 0 1 13.7-5.7M20 12a8 8 0 0 1-13.7 5.7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M17 3v4h-4M7 21v-4h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 刷新现价（腾讯）';
+      if(okSpot>0||okBoll>0) toast('已更新现价 '+okSpot+' 只 · BOLL '+okBoll+' 只');
+      else toast('腾讯接口未返回数据，保留原值（检查网络后重试）');
+    });
+  }
+
+  /* ========== 操作：编辑 / 删除 ========== */
+  var WB={
+    goTo:function(id){
+      switchSection('pool');
+      var el=document.getElementById('row_'+id)||document.getElementById('prow_'+id);
+      if(el){ setTimeout(function(){ el.scrollIntoView({behavior:'smooth',block:'center'}); el.classList.add('flash'); }, 80); }
+    },
+    edit:function(id){
+      var s=state.stocks.filter(function(x){return x.id===id;})[0]; if(!s)return;
+      state.editId=id;
+      document.getElementById('f_code').value=s.code;
+      document.getElementById('f_name').value=s.name;
+      document.getElementById('f_price').value=s.price;
+      document.getElementById('f_div').value=s.dividend;
+      document.getElementById('f_ind').value=s.industry||'';
+      document.getElementById('f_note').value=s.note||'';
+      document.getElementById('stockForm').style.display='grid';
+      document.getElementById('submitBtn').textContent='保存修改';
+      document.getElementById('stockForm').scrollIntoView({behavior:'smooth',block:'start'});
+    },
+    del:function(id){
+      if(!confirm('确定删除这只潮玩？相关记录也会一并删除。')) return;
+      state.stocks=state.stocks.filter(function(x){return x.id!==id;});
+      state.recs=state.recs.filter(function(r){return r.stockId!==id;});
+      persist(); all();
+    }
+  };
+  window.WB=WB;
+
+  /* ========== 板块切换 ========== */
+  var SECTION_TITLES={detect:'赠品排行',pool:'玩具池',boll:'布林',fish:'撒网捕鱼'};
+  function switchSection(id){
+    if(!SECTION_TITLES[id]) id='detect';
+    var panels=document.querySelectorAll('#panel .section-panel');
+    for(var i=0;i<panels.length;i++){ panels[i].classList.toggle('active', panels[i].id===id); }
+    var mi=document.querySelectorAll('.menu-item');
+    for(var j=0;j<mi.length;j++){ mi[j].classList.toggle('active', mi[j].getAttribute('data-target')===id); }
+    var tb=document.querySelectorAll('.tabbar .tab');
+    for(var k=0;k<tb.length;k++){ tb[k].classList.toggle('active', tb[k].getAttribute('data-target')===id); }
+    var tt=document.getElementById('topTitle'); if(tt) tt.textContent=SECTION_TITLES[id];
+    try{ localStorage.setItem(LS_KEYS.section, id); }catch(e){}
+  }
+  function applySidebar(collapsed){
+    var app=document.querySelector('.app'); if(!app) return;
+    app.classList.toggle('collapsed', !!collapsed);
+    var btn=document.getElementById('toggleSidebar');
+    if(btn) btn.innerHTML = collapsed
+      ? '<svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>'
+      : '<svg viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  }
+
+  /* ========== DOM Ready ========== */
+  document.addEventListener('DOMContentLoaded', function(){
+
+    // 侧栏折叠按钮
+    var tsb=document.getElementById('toggleSidebar');
+    if(tsb) tsb.addEventListener('click', function(){
+      var collapsed = !document.querySelector('.app').classList.contains('collapsed');
+      applySidebar(collapsed);
+      try{ localStorage.setItem(LS_KEYS.sidebar, collapsed?'1':'0'); }catch(e){}
+    });
+    try{ var saved = localStorage.getItem(LS_KEYS.sidebar); applySidebar(saved==='1'); }catch(e){ applySidebar(false); }
+
+    // 左侧菜单 & 底部 Tab 点击
+    var navBtns=document.querySelectorAll('[data-target]');
+    for(var n=0;n<navBtns.length;n++){
+      (function(b){ b.addEventListener('click', function(){ switchSection(b.getAttribute('data-target')); }); })(navBtns[n]);
+    }
+
+    // 表单提交
+    document.getElementById('stockForm').addEventListener('submit',function(e){
+      e.preventDefault();
+      var code=document.getElementById('f_code').value.trim();
+      var name=document.getElementById('f_name').value.trim();
+      var price=parseFloat(document.getElementById('f_price').value);
+      var div=parseFloat(document.getElementById('f_div').value);
+      var ind=document.getElementById('f_ind').value.trim();
+      var note=document.getElementById('f_note').value.trim();
+      if(!code||!name||!(price>0)||div<0){ alert('请填写完整且有效的潮玩信息'); return; }
+      if(state.editId){
+        var s=state.stocks.filter(function(x){return x.id===state.editId;})[0];
+        if(s){ s.code=code;s.name=name;s.price=price;s.dividend=div;s.industry=ind;s.note=note; }
+        state.editId=null;
+      }else{
+        state.stocks.push({id:uid(),code:code,name:name,price:price,dividend:div,industry:ind,note:note});
+      }
+      this.reset();
+      this.style.display='none';
+      document.getElementById('submitBtn').textContent='保存潮玩';
+      persist(); all();
+    });
+    document.getElementById('cancelEdit').onclick=function(){
+      state.editId=null; document.getElementById('stockForm').style.display='none';
+      document.getElementById('stockForm').reset(); document.getElementById('submitBtn').textContent='保存潮玩';
+    };
+    document.getElementById('toggleForm').onclick=function(){
+      var f=document.getElementById('stockForm');
+      f.style.display = f.style.display==='grid'?'none':'grid';
+      if(f.style.display==='grid') f.scrollIntoView({behavior:'smooth',block:'start'});
+    };
+
+    // 阈值
+    document.getElementById('thresh').addEventListener('change',function(){
+      var v=parseFloat(this.value); if(!(v>=0)) v=0; state.thresh=v; persist(); renderDetect();
+    });
+    document.getElementById('sortRate').onclick=function(){ state.sortByRate=!state.sortByRate; renderDetect(); };
+
+    // 清空 / 载入示例
+    document.getElementById('clearSamples').onclick=function(){
+      if(!confirm('将清空全部潮玩与记录，且无法恢复。确定继续？')) return;
+      state.stocks=[]; state.recs=[]; state.editId=null;
+      persist(); all();
+    };
+    document.getElementById('loadSamples').addEventListener('click',function(){
+      if(!confirm('将用示例玩具池覆盖当前数据，确定继续？')) return;
+      state.stocks=buildSeedStocks();
+      state.recs=[]; state.editId=null;
+      persist(); all();
+    });
+
+    // 刷新现价
+    document.getElementById('refreshPrice').addEventListener('click',refreshPrices);
+
+    // 导出 CSV
+    document.getElementById('exportCsv').onclick=function(){
+      if(!state.stocks.length){ alert('没有可导出的潮玩'); return; }
+      var head='代码,名称,行业,现价,每只年度赠品,赠品率,判定\n';
+      var rows=state.stocks.map(function(s){
+        var r=rate(s);
+        return [s.code,s.name,s.industry||'',s.price,s.dividend,fmt(r)+'%',r>=state.thresh?'达标':'低于目标'].join(',');
+      }).join('\n');
+      var csv=head+rows;
+      var ta=document.getElementById('csvText'); if(ta) ta.value=csv;
+      var m=document.getElementById('csvModal'); if(m) m.style.display='flex';
+    };
+
+    // 导出/导入 JSON
+    document.getElementById('btnExport').onclick=exportJSON;
+    document.getElementById('btnImport').onclick=function(){document.getElementById('importFile').click();};
+    var em=document.getElementById('exportModal');
+    document.getElementById('exportDownload').onclick=function(){
+      var ta=document.getElementById('exportText'); download(ta.value,'玩具之家_本地备份.json','application/json'); toast('已触发下载');
+    };
+    document.getElementById('exportCopy').onclick=function(){
+      copyText(document.getElementById('exportText').value);
+    };
+    document.getElementById('exportClose').onclick=function(){ if(em) em.style.display='none'; };
+    if(em) em.addEventListener('click',function(e){ if(e.target===em) em.style.display='none'; });
+
+    var cm=document.getElementById('csvModal');
+    document.getElementById('csvDownload').onclick=function(){
+      download(document.getElementById('csvText').value,'玩具之家_潮玩.csv','text/csv;charset=utf-8'); toast('已触发下载');
+    };
+    document.getElementById('csvCopy').onclick=function(){
+      copyText(document.getElementById('csvText').value);
+    };
+    document.getElementById('csvClose').onclick=function(){ if(cm) cm.style.display='none'; };
+    if(cm) cm.addEventListener('click',function(e){ if(e.target===cm) cm.style.display='none'; });
+    document.getElementById('importFile').addEventListener('change',function(e){
+      if(e.target.files[0]) importJSON(e.target.files[0]); e.target.value='';
+    });
+
+    // 启动
+    bootstrap();
+  });
+
+  /* ========== 导出/导入 JSON ========== */
+  function download(text,name,type){
+    try{
+      var blob=new Blob([text],{type:type||'application/json'});
+      if(navigator.msSaveOrOpenBlob){ navigator.msSaveOrOpenBlob(blob,name); return true; }
+      var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name;
+      document.body.appendChild(a); a.click();
+      setTimeout(function(){ try{document.body.removeChild(a);}catch(e){} URL.revokeObjectURL(a.href); },1000);
+      return true;
+    }catch(e){ return false; }
+  }
+  function exportJSON(){
+    var data={version:2,exportedAt:new Date().toISOString(),
+      stocks:state.stocks,records:state.recs,threshold:state.thresh};
+    var ta=document.getElementById('exportText'); if(ta) ta.value=JSON.stringify(data,null,2);
+    var m=document.getElementById('exportModal'); if(m) m.style.display='flex';
+  }
+  function copyText(t){
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(t).then(function(){toast('已复制备份文本');},function(){fallbackCopy();});
+    } else fallbackCopy();
+  }
+  function fallbackCopy(){
+    var ta=document.getElementById('exportText'); if(!ta) return; ta.focus(); ta.select();
+    try{ document.execCommand('copy'); toast('已复制备份文本'); }catch(e){ toast('请手动长按文本复制'); }
+  }
+  function importJSON(file){
+    var rd2=new FileReader();
+    rd2.onload=function(){
+      try{
+        var d=JSON.parse(rd2.result);
+        if(!d||!Array.isArray(d.stocks)) throw 0;
+        if(!confirm('导入将覆盖当前全部数据，确定继续？建议先导出当前备份。')) return;
+        state.stocks=d.stocks||[]; state.recs=d.records||[];
+        if(typeof d.threshold==='number') state.thresh=d.threshold;
+        persist(); all();
+        alert('导入成功，共 '+state.stocks.length+' 只潮玩');
+      }catch(e){ alert('文件格式不正确，导入失败'); }
+    };
+    rd2.readAsText(file);
+  }
+
+  /* ========== 渲染：撒网捕鱼 ========== */
+  var FISH_RATES=[4.0,4.5,5.0,5.5,6.0,6.5,7.0];
+  function fishTargets(s){
+    return FISH_RATES.map(function(r){
+      var tp = s.dividend>0 ? (s.dividend*100/r) : 0;
+      return {r:r, tp:tp, ok:(s.price>0 && tp>s.price), lag:(s.price>0 ? (tp-s.price)/s.price*100 : 0)};
+    });
+  }
+  function fishRowSvg(s){
+    var ts=fishTargets(s), all=ts.map(function(t){return t.tp;}).concat([s.price]);
+    var lo=Math.min.apply(null,all)*0.93, hi=Math.max.apply(null,all)*1.05;
+    if(hi<=lo) hi=lo+1;
+    var narrow = window.innerWidth < 768;
+    var W = narrow ? 380 : 640, H = 78, pad=10;
+    var x=function(v){ return pad+(v-lo)/(hi-lo)*(W-2*pad); };
+    var y=40;
+    var g='<svg class="fishsvg" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="xMidYMid meet" role="img">';
+    g+='<line x1="'+pad+'" y1="'+y+'" x2="'+(W-pad)+'" y2="'+y+'" stroke="var(--line)" stroke-width="2"/>';
+    ts.slice().sort(function(a,b){return a.tp-b.tp;}).forEach(function(t,i,arr){
+      var cx=x(t.tp), col=t.ok?'var(--green)':'#b0b7c3';
+      g+='<circle cx="'+cx+'" cy="'+y+'" r="'+(t.ok?6:4.8)+'" fill="'+(t.ok?col:'var(--card)')+'" stroke="'+col+'" stroke-width="1.8">'
+        +'<title>'+t.r.toFixed(1)+'% → '+fmt(t.tp,2)+' 元（'+(t.ok?'已入网':'还需跌 '+fmt(0-t.lag,1)+'%')+'）</title></circle>';
+      var showLb = !narrow || i===0 || i===arr.length-1 || t.ok;
+      if(showLb){
+        g+='<text x="'+cx+'" y="'+(y-14)+'" text-anchor="middle" font-size="'+(narrow?9.5:10)+'" fill="var(--sub)">'+t.r.toFixed(1)+'%</text>';
+        g+='<text x="'+cx+'" y="'+(y+19)+'" text-anchor="middle" font-size="'+(narrow?9:9.5)+'" fill="'+(t.ok?'var(--green)':'#9aa3af')+'">'+fmt(t.tp,2)+'</text>';
+        if(!t.ok) g+='<text x="'+cx+'" y="'+(y+31)+'" text-anchor="middle" font-size="'+(narrow?8:8.5)+'" fill="var(--red)">跌'+fmt(0-t.lag,1)+'%</text>';
+      }
+    });
+    var px=x(s.price);
+    g+='<line x1="'+px+'" y1="'+(y-26)+'" x2="'+px+'" y2="'+(y+11)+'" stroke="var(--red)" stroke-width="2"/>';
+    g+='<polygon points="'+(px-4.5)+','+(y-26)+' '+(px+4.5)+','+(y-26)+' '+px+','+(y-19)+'" fill="var(--red)"/>';
+    g+='<text x="'+px+'" y="'+(y-30)+'" text-anchor="middle" font-size="'+(narrow?9.5:10)+'" font-weight="700" fill="var(--red)">现价 '+fmt(s.price,2)+'</text>';
+    g+='</svg>';
+    return g;
+  }
+  function renderFish(){
+    var box=document.getElementById('fishBody');
+    if(!box) return;
+    var list=state.stocks.filter(function(s){return s.price>0 && s.dividend>0;})
+                         .sort(function(a,b){return rate(b)-rate(a);});
+    if(!list.length){
+      box.innerHTML='<div class="empty">玩具池为空，或缺少现价 / 每只赠品数据。<br>先去「玩具池」添加潮玩并刷新现价。</div>';
+      document.getElementById('fishTable').innerHTML='';
+      return;
+    }
+    var h='';
+    list.forEach(function(s){
+      var cur=rate(s);
+      h+='<div class="fishrow">'
+        +'<div class="fishhd"><span><span class="fnm">'+esc(s.name)+'</span><span class="fsub">'+esc(s.code)+' · 每只赠品 '+fmt(s.dividend,3)+'</span></span>'
+        +'<span>当前股息率 <b style="color:var(--ink)">'+fmt(cur,2)+'%</b></span></div>'
+        +fishRowSvg(s)+'</div>';
+    });
+    box.innerHTML=h;
+    var t='<thead><tr><th>潮玩</th><th>现价</th><th>当前</th>';
+    FISH_RATES.forEach(function(r){ t+='<th>'+r.toFixed(1)+'%</th>'; });
+    t+='</tr></thead><tbody>';
+    list.forEach(function(s){
+      t+='<tr><td>'+esc(s.name)+'</td><td class="cur">'+fmt(s.price,2)+'</td><td>'+fmt(rate(s),2)+'%</td>';
+      fishTargets(s).forEach(function(tg){
+        t+='<td class="'+(tg.ok?'ok':'no')+'">'+fmt(tg.tp,2)
+          +(tg.ok?'':'<span class="lag">'+fmt(tg.lag,1)+'%</span>')+'</td>';
+      });
+      t+='</tr>';
+    });
+    t+='</tbody>';
+    document.getElementById('fishTable').innerHTML=t;
+  }
+
+  /* ========== 全量渲染 ========== */
+  function all(){ renderDetect(); renderPool(); renderBoll(); renderFish(); showRefreshTime(); }
+
+  /* ========== 启动 ========== */
+  function bootstrap(){
+    // 从 localStorage 加载
+    var storedStocks = rd(LS_KEYS.stocks, null);
+    var storedRecs = rd(LS_KEYS.recs, null);
+    var storedSettings = rd(LS_KEYS.settings, null);
+
+    state.stocks = Array.isArray(storedStocks) ? storedStocks : [];
+    state.recs = Array.isArray(storedRecs) ? storedRecs : [];
+    if(storedSettings && typeof storedSettings==='object'){
+      if(typeof storedSettings.thresh==='number') state.thresh=storedSettings.thresh;
+      if('lastRefresh' in storedSettings) state.lastRefresh=storedSettings.lastRefresh;
+      if(storedSettings.boll) state.boll=storedSettings.boll;
+    }
+
+    // 首次访问：载入示例数据
+    if(!state.stocks.length){ state.stocks=buildSeedStocks(); persist(); }
+
+    var savedSec=null; try{ savedSec=localStorage.getItem(LS_KEYS.section); }catch(e){}
+    try{ if(localStorage.getItem(LS_KEYS.sidebar)==='1') applySidebar(true); }catch(e){}
+    all();
+    switchSection(savedSec||'detect');
+
+    // resize 时重新绘制捕鱼图（SVG 宽度依赖容器）
+    var rzT=null; window.addEventListener('resize',function(){
+      clearTimeout(rzT); rzT=setTimeout(function(){
+        if(document.getElementById('fish')&&document.getElementById('fish').classList.contains('active')) renderFish();
+      },260);
+    });
+
+    // 延迟 600ms 后自动尝试刷新现价（静默，无提示）
+    setTimeout(function(){ refreshPrices(true); }, 600);
+  }
+
+})();
+</script>
+</body>
+</html>
