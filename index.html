@@ -1176,7 +1176,7 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
       if(e.target.files[0]) importJSON(e.target.files[0]); e.target.value='';
     });
 
-    /* ========== R1 口径弹窗定位（fixed，避免被 th sticky 遮挡） ========== */
+    /* ========== R1 口径弹窗定位（移到 body 下，避开 header backdrop-filter 包含块） ========== */
     function positionNotePop(wrap, pop){
       var r=wrap.getBoundingClientRect();
       var pw=pop.offsetWidth||280, ph=pop.offsetHeight||120;
@@ -1192,6 +1192,12 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
       var pops=document.querySelectorAll('.div-note-pop.show');
       for(var p=0;p<pops.length;p++){ pops[p].classList.remove('show'); }
     }
+    function ensurePopInBody(wrap, pop){
+      if(pop.parentNode !== document.body){
+        document.body.appendChild(pop);
+        pop._wrap=wrap;
+      }
+    }
     var noteTriggers=document.querySelectorAll('.div-note-trigger');
     for(var nt=0;nt<noteTriggers.length;nt++){
       (function(tr){
@@ -1199,6 +1205,7 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
         var pop=wrap.querySelector('.div-note-pop');
         if(!pop) return;
         tr.addEventListener('mouseenter',function(){
+          ensurePopInBody(wrap, pop);
           pop.classList.add('show');
           positionNotePop(wrap, pop);
         });
@@ -1207,6 +1214,7 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
         });
         tr.addEventListener('click',function(e){
           e.stopPropagation();
+          ensurePopInBody(wrap, pop);
           if(pop.classList.contains('show')){
             pop.classList.remove('show');
           } else {
