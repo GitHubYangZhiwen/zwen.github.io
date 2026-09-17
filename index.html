@@ -373,9 +373,6 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
 }
 .boll-fullscreen-card .close-btn:hover{background:var(--cream);color:var(--ink)}
 .bollcell{cursor:pointer} .bollcell:hover .bollmini{filter:brightness(.95)}
-/* ========== R4 撒网捕鱼移动端滚动提示 ========== */
-.fish-scroll-hint{display:none;font-size:11px;color:var(--sub);text-align:center;margin-top:var(--space-2)}
-@media(max-width:767px){.fish-scroll-hint{display:block}}
 </style>
 <meta name="theme-color" content="#332849">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1286,8 +1283,7 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
       h+='<div class="fishrow">'
         +'<div class="fishhd"><span><span class="fnm">'+esc(s.name)+'</span><span class="fsub">'+esc(s.code)+' · 每只赠品 '+fmt(s.dividend,3)+'</span></span>'
         +'<span>当前股息率 <b style="color:var(--ink)">'+fmt(cur,2)+'%</b></span></div>'
-        +'<div style="overflow-x:auto;-webkit-overflow-scrolling:touch">'+fishRowSvg(s)+'</div>'
-        +'<div class="fish-scroll-hint">← 左右滑动查看完整渔网 →</div></div>';
+        +fishRowSvg(s)+'</div>';
     });
     box.innerHTML=h;
     var t='<thead><tr><th>潮玩</th><th>现价</th><th>当前</th>';
