@@ -304,6 +304,78 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
   .tabbar .tab.active{color:var(--brand);background:var(--brand-soft)}
   .tabbar .tab:hover{color:var(--brand-hover)}
 }
+/* ========== R1 风险提示 & 口径说明 ========== */
+.disclaimer-bar{
+  background:linear-gradient(135deg,#fef3c7,#fef9c3);border:1px solid #fcd34d;
+  border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);
+  font-size:12px;color:#92400e;line-height:1.7;margin-bottom:var(--space-4);
+  display:flex;align-items:flex-start;gap:var(--space-2);flex-wrap:wrap;
+  box-shadow:var(--shadow-xs);
+}
+.disclaimer-bar .dis-ico{font-size:16px;flex-shrink:0;margin-top:1px}
+.disclaimer-bar .dis-txt{flex:1;min-width:200px}
+.disclaimer-bar .dis-txt strong{color:#b45309}
+.div-note-trigger{
+  display:inline-flex;align-items:center;gap:2px;font-size:11px;color:var(--brand);
+  cursor:pointer;border-bottom:1px dashed var(--brand);user-select:none;
+  transition:all var(--transition-fast);margin-left:var(--space-1);white-space:nowrap;
+}
+.div-note-trigger:hover{color:var(--brand-hover);border-color:var(--brand-hover)}
+.div-note-trigger svg{width:13px;height:13px}
+.div-note-pop{
+  display:none;position:absolute;z-index:30;background:#fff;border:1px solid var(--line);
+  border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);font-size:12px;
+  color:var(--ink);line-height:1.7;min-width:260px;max-width:320px;
+  box-shadow:var(--shadow-lg);left:0;top:calc(100% + 4px)
+}
+.div-note-wrap{position:relative;display:inline-flex;align-items:center}
+.div-note-wrap:hover .div-note-pop,.div-note-pop.show{display:block}
+/* ========== R2 警示条 ========== */
+.warn-bar{
+  display:none;background:var(--red-soft);border:1px solid #fca5a5;
+  border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);
+  font-size:13px;color:var(--red);line-height:1.6;margin-bottom:var(--space-4);
+  box-shadow:var(--shadow-xs);align-items:center;gap:var(--space-2)
+}
+.warn-bar.show{display:flex}
+.warn-bar .warn-ico{font-size:16px;flex-shrink:0}
+.warn-bar .warn-txt{flex:1}
+.warn-bar .warn-close{flex-shrink:0;cursor:pointer;font-size:18px;line-height:1;opacity:.6;padding:0 4px;min-height:28px;display:flex;align-items:center;transition:opacity var(--transition-fast)}
+.warn-bar .warn-close:hover{opacity:1}
+/* ========== R3 备份提醒增强 ========== */
+.backup-reminder{
+  display:none;background:linear-gradient(135deg,#e0e7ff,#ede9fe);
+  border:1px solid #a5b4fc;border-radius:var(--radius-md);
+  padding:var(--space-3) var(--space-4);font-size:13px;color:#3730a3;
+  line-height:1.7;margin-bottom:var(--space-4);align-items:center;gap:var(--space-3);
+  box-shadow:var(--shadow-xs);flex-wrap:wrap
+}
+.backup-reminder.show{display:flex}
+.backup-reminder .br-txt{flex:1;min-width:180px}
+.backup-reminder .br-btns{display:flex;gap:var(--space-2);flex-shrink:0}
+/* ========== R4 BOLL 全屏 ========== */
+.boll-fullscreen-mask{
+  position:fixed;inset:0;background:rgba(15,23,42,.85);display:none;align-items:center;
+  justify-content:center;z-index:300;padding:var(--space-4);backdrop-filter:blur(4px);
+  animation:fadeIn var(--transition-fast)
+}
+.boll-fullscreen-mask.show{display:flex}
+.boll-fullscreen-card{
+  background:#fff;border-radius:var(--radius-xl);padding:var(--space-5) var(--space-6);
+  box-shadow:var(--shadow-xl);width:min(94vw,720px);max-height:90vh;overflow:auto;
+  animation:slideUp var(--transition-base)
+}
+.boll-fullscreen-card h4{font-size:16px;margin:0 0 var(--space-4);display:flex;align-items:center;gap:var(--space-2);color:var(--ink)}
+.boll-fullscreen-card .close-btn{
+  margin-left:auto;background:none;border:1px solid var(--line);border-radius:var(--radius-sm);
+  width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;
+  font-size:18px;color:var(--sub);transition:all var(--transition-fast)
+}
+.boll-fullscreen-card .close-btn:hover{background:var(--cream);color:var(--ink)}
+.bollcell{cursor:pointer} .bollcell:hover .bollmini{filter:brightness(.95)}
+/* ========== R4 撒网捕鱼移动端滚动提示 ========== */
+.fish-scroll-hint{display:none;font-size:11px;color:var(--sub);text-align:center;margin-top:var(--space-2)}
+@media(max-width:767px){.fish-scroll-hint{display:block}}
 </style>
 <meta name="theme-color" content="#332849">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -355,6 +427,25 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
     </header>
     <div class="top-note">数据存于浏览器本地(localStorage),不上传任何服务器。建议定期点右上「导出备份」留存 JSON 快照。</div>
 
+    <div class="disclaimer-bar" role="alert">
+      <span class="dis-ico">⚠️</span>
+      <span class="dis-txt"><strong>风险提示：</strong>本页面仅为个人数据整理工具，所有数据来自公开接口与用户手工录入，<strong>仅供参考，不构成任何投资建议</strong>。股市有风险，投资需谨慎。过往分红不代表未来收益，请独立判断、自负盈亏。</span>
+    </div>
+
+    <div class="warn-bar" id="warnBar" role="alert">
+      <span class="warn-ico">⚠️</span>
+      <span class="warn-txt" id="warnTxt">数据可能已过期，请检查网络后重试刷新。</span>
+      <span class="warn-close" id="warnClose" title="关闭">×</span>
+    </div>
+
+    <div class="backup-reminder" id="backupReminder" role="alert">
+      <span class="br-txt">📦 自选已积累较多数据，距上次备份已超过7天，建议立即导出备份以防数据丢失。</span>
+      <span class="br-btns">
+        <button class="btn ghost sm" id="brExportNow">立即备份</button>
+        <button class="btn soft sm" id="brDismiss">不再提醒</button>
+      </span>
+    </div>
+
     <div id="bkTip" role="alert">数据已积累较多,建议点右上「导出备份」留存一份 JSON 快照。</div>
 
     <!-- 切换面板 -->
@@ -378,7 +469,8 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
           <table id="detTable" aria-label="赠品排行数据表">
             <thead><tr>
               <th scope="col">名称 / 代码</th><th class="hide-sm" scope="col">行业</th><th scope="col">现价</th><th scope="col">每只赠品</th>
-              <th scope="col">赠品率</th><th scope="col">判定</th><th scope="col">日BOLL</th><th scope="col">周BOLL</th>
+              <th scope="col">赠品率<span class="div-note-wrap"><span class="div-note-trigger" title="点击查看计算口径"> ⓘ<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span><span class="div-note-pop"><b>计算口径：</b>赠品率 = 每只年度赠品（元）÷ 现价（元）× 100%。<br><br>「每只年度赠品」为最近一个完整财年的每股现金分红合计，由用户手工录入，非实时 TTM 滚动值。<br><br>数据来源：手工录入 + 腾讯行情接口（现价），仅供参考。</span></span></th>
+              <th scope="col">判定</th><th scope="col">日BOLL</th><th scope="col">周BOLL</th>
             </tr></thead>
             <tbody id="detBody"></tbody>
           </table>
@@ -478,6 +570,15 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
 <!-- ========== 隐藏文件选择控件 ========== -->
 <input accept="application/json,.json" id="importFile" type="file" style="display:none">
 
+<!-- ========== R4 BOLL 全屏弹窗 ========== -->
+<div class="boll-fullscreen-mask" id="bollFullMask">
+  <div class="boll-fullscreen-card">
+    <h4><span id="bollFullTitle">布林带详情</span><button class="close-btn" id="bollFullClose">×</button></h4>
+    <div style="overflow-x:auto"><svg class="chart" id="bollFullSvg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 640 320" role="img" aria-label="布林带全屏图"></svg></div>
+    <div class="legend" id="bollFullLegend" style="margin-top:var(--space-3)"></div>
+  </div>
+</div>
+
 <!-- ========== 导出备份弹窗 ========== -->
 <div class="modal-mask" id="exportModal">
   <div class="modal">
@@ -516,7 +617,7 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
 
   /* ========== 常量 ========== */
   var K='wb_dividend_';
-  var LS_KEYS = { stocks:K+'stocks', recs:K+'recs', settings:K+'settings', section:K+'section', sidebar:K+'sidebar' };
+  var LS_KEYS = { stocks:K+'stocks', recs:K+'recs', settings:K+'settings', section:K+'section', sidebar:K+'sidebar', lastExport:K+'lastExport', bkDismissed:K+'bkDismissed' };
 
   function rd(k,d){ try{var v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch(e){return d;} }
   function wt(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
@@ -530,7 +631,10 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
     editId:null,
     sortByRate:false,
     lastRefresh: null,
-    boll: {}
+    boll: {},
+    refreshRetryCount: 0,
+    lastExportTime: null,
+    dataStale: false
   };
 
   /* ========== 示例预置 ========== */
@@ -563,6 +667,7 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
     wt(LS_KEYS.stocks, state.stocks);
     wt(LS_KEYS.recs, state.recs);
     wt(LS_KEYS.settings, { thresh:state.thresh, lastRefresh:state.lastRefresh, boll:state.boll });
+    if(state.lastExportTime) wt(LS_KEYS.lastExport, state.lastExportTime);
     checkBackupTip();
   }
 
@@ -570,6 +675,18 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
   function rate(s){ return s.price>0 ? (s.dividend/s.price*100) : 0; }
   function fmt(n,d){ return Number(n).toFixed(d===undefined?2:d); }
   function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+
+  /* ========== R5 股票代码校验 ========== */
+  function validateStockCode(code){
+    code=String(code||'').trim();
+    if(!code){ return {valid:false, msg:'请输入股票代码'}; }
+    var pure=code.replace(/^(sh|sz|bj)/i,'');
+    if(!/^\d{6}$/.test(pure)) return {valid:false, msg:'股票代码应为6位数字（如 601398），可带 sh/sz/bj 交易所前缀'};
+    var first=parseInt(pure[0]);
+    var validPrefixes=[0,3,4,6,8,9];
+    if(validPrefixes.indexOf(first)===-1) return {valid:false, msg:'代码首位应为 0/3/4/6/8/9（A股代码格式）'};
+    return {valid:true, pure:pure};
+  }
 
   /* ========== BOLL 计算 + 迷你图 ========== */
   function calcBoll(closes,N){
@@ -713,6 +830,44 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
     document.getElementById('bkTip').style.display = n>=30 ? 'block':'none';
   }
 
+  /* ========== R2 警示条 ========== */
+  function showWarn(msg){
+    var bar=document.getElementById('warnBar');
+    var txt=document.getElementById('warnTxt');
+    if(bar&&txt){ txt.textContent=msg||'数据可能已过期，请检查网络后重试刷新。'; bar.classList.add('show'); }
+    state.dataStale=true;
+  }
+  function hideWarn(){
+    var bar=document.getElementById('warnBar');
+    if(bar) bar.classList.remove('show');
+    state.dataStale=false;
+  }
+
+  /* ========== R3 备份提醒 ========== */
+  function checkBackupReminder(){
+    if(localStorage.getItem(LS_KEYS.bkDismissed)==='1') return;
+    if(state.stocks.length < 20) return;
+    var lt=rd(LS_KEYS.lastExport, null);
+    if(!lt){ state.lastExportTime=new Date().toISOString(); wt(LS_KEYS.lastExport, state.lastExportTime); return; }
+    state.lastExportTime=lt;
+    var last=new Date(lt), now=new Date();
+    var days=(now-last)/(86400000);
+    if(days>7){
+      var el=document.getElementById('backupReminder');
+      if(el) el.classList.add('show');
+    }
+  }
+  function dismissBackupReminder(forever){
+    var el=document.getElementById('backupReminder');
+    if(el) el.classList.remove('show');
+    if(forever){ try{localStorage.setItem(LS_KEYS.bkDismissed,'1');}catch(e){} }
+  }
+  function resetExportTime(){
+    state.lastExportTime=new Date().toISOString();
+    wt(LS_KEYS.lastExport, state.lastExportTime);
+    dismissBackupReminder(false);
+  }
+
   /* ========== 腾讯行情：刷新现价 & BOLL ========== */
   function prefixOf(code){
     code=String(code||'').trim();
@@ -782,11 +937,19 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
     });
   }
   function refreshPrices(silent){
+    var MAX_RETRIES=3;
     var btn=document.getElementById('refreshPrice');
     if(!state.stocks.length){ if(!silent) alert('玩具池为空，先添加潮玩再刷新'); return; }
     if(btn.disabled) return;
+    if(state.refreshRetryCount >= MAX_RETRIES){
+      showWarn('刷新已达上限（'+MAX_RETRIES+'次），请稍后再试，避免高频请求。可等待1分钟后重试或刷新页面。');
+      if(!silent) toast('刷新太频繁，请稍后再试');
+      return;
+    }
     btn.disabled=true; btn.classList.add('loading');
     btn.innerHTML='<svg class="icon sm" viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 0 1 13.7-5.7M20 12a8 8 0 0 1-13.7 5.7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M17 3v4h-4M7 21v-4h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 刷新中…';
+    state.refreshRetryCount++;
+    hideWarn();
     var tasks=[ refreshSpot() ];
     state.stocks.forEach(function(st){
       tasks.push(fetchBoll(st).then(function(b){
@@ -797,11 +960,15 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
       var okSpot=res[0]||0;
       var okBoll=state.stocks.filter(function(s){return state.boll[s.id]&&state.boll[s.id].day;}).length;
       state.lastRefresh=new Date().toISOString();
+      state.refreshRetryCount=0;
       persist(); all(); showRefreshTime();
       btn.disabled=false; btn.classList.remove('loading');
       btn.innerHTML='<svg class="icon sm" viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 0 1 13.7-5.7M20 12a8 8 0 0 1-13.7 5.7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M17 3v4h-4M7 21v-4h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 刷新现价（腾讯）';
-      if(okSpot>0||okBoll>0) toast('已更新现价 '+okSpot+' 只 · BOLL '+okBoll+' 只');
-      else toast('腾讯接口未返回数据，保留原值（检查网络后重试）');
+      if(okSpot>0||okBoll>0){ toast('已更新现价 '+okSpot+' 只 · BOLL '+okBoll+' 只'); hideWarn(); }
+      else{
+        showWarn('腾讯接口未返回数据（可能网络异常或接口限频），数据保持旧值。检查网络后重试。');
+        if(!silent) toast('腾讯接口未返回数据，保留原值（检查网络后重试）');
+      }
     });
   }
 
@@ -896,12 +1063,15 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
       var ind=document.getElementById('f_ind').value.trim();
       var note=document.getElementById('f_note').value.trim();
       if(!code||!name||!(price>0)||div<0){ alert('请填写完整且有效的潮玩信息'); return; }
+      /* R5 股票代码校验 */
+      var v=validateStockCode(code);
+      if(!v.valid){ alert(v.msg); return; }
       if(state.editId){
         var s=state.stocks.filter(function(x){return x.id===state.editId;})[0];
-        if(s){ s.code=code;s.name=name;s.price=price;s.dividend=div;s.industry=ind;s.note=note; }
+        if(s){ s.code=v.pure;s.name=name;s.price=price;s.dividend=div;s.industry=ind;s.note=note; }
         state.editId=null;
       }else{
-        state.stocks.push({id:uid(),code:code,name:name,price:price,dividend:div,industry:ind,note:note});
+        state.stocks.push({id:uid(),code:v.pure,name:name,price:price,dividend:div,industry:ind,note:note});
       }
       this.reset();
       this.style.display='none';
@@ -979,6 +1149,44 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
       if(e.target.files[0]) importJSON(e.target.files[0]); e.target.value='';
     });
 
+    /* ========== R1 口径弹窗移动端点击切换 ========== */
+    var noteTriggers=document.querySelectorAll('.div-note-trigger');
+    for(var nt=0;nt<noteTriggers.length;nt++){
+      (function(tr){
+        tr.addEventListener('click',function(e){
+          e.stopPropagation();
+          var pop=tr.parentNode.querySelector('.div-note-pop');
+          if(pop) pop.classList.toggle('show');
+        });
+      })(noteTriggers[nt]);
+    }
+    document.addEventListener('click',function(){
+      var pops=document.querySelectorAll('.div-note-pop.show');
+      for(var p=0;p<pops.length;p++) pops[p].classList.remove('show');
+    });
+
+    /* ========== R2 警示条关闭 ========== */
+    var wc=document.getElementById('warnClose');
+    if(wc) wc.addEventListener('click', hideWarn);
+
+    /* ========== R3 备份提醒按钮 ========== */
+    var brExport=document.getElementById('brExportNow');
+    if(brExport) brExport.addEventListener('click',function(){ exportJSON(); });
+    var brDismiss=document.getElementById('brDismiss');
+    if(brDismiss) brDismiss.addEventListener('click',function(){ dismissBackupReminder(true); });
+
+    /* ========== R4 BOLL 全屏事件 ========== */
+    var bollFullClose=document.getElementById('bollFullClose');
+    if(bollFullClose) bollFullClose.addEventListener('click', hideBollFullscreen);
+    var bollMask=document.getElementById('bollFullMask');
+    if(bollMask) bollMask.addEventListener('click',function(e){ if(e.target===bollMask) hideBollFullscreen(); });
+    document.getElementById('bollTable').addEventListener('click',function(e){
+      var cell=e.target.closest('.bollcell'); if(!cell) return;
+      var row=cell.closest('tr'); if(!row) return;
+      var idx=Array.prototype.indexOf.call(row.parentNode.children, row);
+      if(idx>=0 && idx<state.stocks.length){ showBollFullscreen(state.stocks[idx].id); }
+    });
+
     // 启动
     bootstrap();
   });
@@ -995,6 +1203,7 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
     }catch(e){ return false; }
   }
   function exportJSON(){
+    resetExportTime();
     var data={version:2,exportedAt:new Date().toISOString(),
       stocks:state.stocks,records:state.recs,threshold:state.thresh};
     var ta=document.getElementById('exportText'); if(ta) ta.value=JSON.stringify(data,null,2);
@@ -1077,7 +1286,8 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
       h+='<div class="fishrow">'
         +'<div class="fishhd"><span><span class="fnm">'+esc(s.name)+'</span><span class="fsub">'+esc(s.code)+' · 每只赠品 '+fmt(s.dividend,3)+'</span></span>'
         +'<span>当前股息率 <b style="color:var(--ink)">'+fmt(cur,2)+'%</b></span></div>'
-        +fishRowSvg(s)+'</div>';
+        +'<div style="overflow-x:auto;-webkit-overflow-scrolling:touch">'+fishRowSvg(s)+'</div>'
+        +'<div class="fish-scroll-hint">← 左右滑动查看完整渔网 →</div></div>';
     });
     box.innerHTML=h;
     var t='<thead><tr><th>潮玩</th><th>现价</th><th>当前</th>';
@@ -1093,6 +1303,64 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
     });
     t+='</tbody>';
     document.getElementById('fishTable').innerHTML=t;
+  }
+
+  /* ========== R4 BOLL 全屏 ========== */
+  function showBollFullscreen(stockId){
+    var s=state.stocks.filter(function(x){return x.id===stockId;})[0];
+    if(!s) return;
+    var b=state.boll[stockId];
+    var mask=document.getElementById('bollFullMask');
+    var title=document.getElementById('bollFullTitle');
+    var svgEl=document.getElementById('bollFullSvg');
+    var legend=document.getElementById('bollFullLegend');
+    if(!mask||!svgEl) return;
+    title.textContent='布林带详情 - '+s.name+' ('+s.code+')';
+    var W=640, H=320, padL=50, padR=20, padT=20, padB=50;
+    var plotW=W-padL-padR, plotH=H-padT-padB;
+    var dayB=b&&b.day, weekB=b&&b.week;
+    var allVals=[s.price];
+    if(dayB){ allVals.push(dayB.up,dayB.mid,dayB.down); }
+    if(weekB){ allVals.push(weekB.up,weekB.mid,weekB.down); }
+    var lo=Math.min.apply(null,allVals)*0.95, hi=Math.max.apply(null,allVals)*1.05;
+    if(hi<=lo) hi=lo+1;
+    function Y(v){ return padT+plotH*(1-(v-lo)/(hi-lo)); }
+    var g='';
+    g+='<line x1="'+padL+'" y1="'+padT+'" x2="'+padL+'" y2="'+(H-padB)+'" stroke="#cbd5e1"/>';
+    g+='<line x1="'+padL+'" y1="'+(H-padB)+'" x2="'+(W-padR)+'" y2="'+(H-padB)+'" stroke="#cbd5e1"/>';
+    var yTicks=4;
+    for(var i=0;i<=yTicks;i++){
+      var val=lo+(hi-lo)*i/yTicks, y=Y(val);
+      g+='<text x="'+(padL-6)+'" y="'+(y+4)+'" text-anchor="end" font-size="11" fill="#9aa3af">'+fmt(val,2)+'</text>';
+      g+='<line x1="'+padL+'" y1="'+y+'" x2="'+(W-padR)+'" y2="'+y+'" stroke="#e5e7eb" stroke-dasharray="2 4"/>';
+    }
+    var dayX=padL+plotW*0.25, weekX=padL+plotW*0.75;
+    function drawBollBand(b, cx, label){
+      if(!b) return;
+      var bw=80;
+      g+='<rect x="'+(cx-bw/2)+'" y="'+Y(b.up)+'" width="'+bw+'" height="'+(Y(b.down)-Y(b.up))+'" fill="rgba(22,163,74,.06)" rx="3"/>';
+      g+='<line x1="'+(cx-bw/2)+'" y1="'+Y(b.up)+'" x2="'+(cx+bw/2)+'" y2="'+Y(b.up)+'" stroke="#16a34a" stroke-width="2"/>';
+      g+='<line x1="'+(cx-bw/2)+'" y1="'+Y(b.mid)+'" x2="'+(cx+bw/2)+'" y2="'+Y(b.mid)+'" stroke="#9aa3af" stroke-width="1.5" stroke-dasharray="5 4"/>';
+      g+='<line x1="'+(cx-bw/2)+'" y1="'+Y(b.down)+'" x2="'+(cx+bw/2)+'" y2="'+Y(b.down)+'" stroke="#16a34a" stroke-width="2"/>';
+      g+='<circle cx="'+cx+'" cy="'+Y(s.price)+'" r="5" fill="#1d4ed8" stroke="#fff" stroke-width="2"/>';
+      g+='<text x="'+cx+'" y="'+(Y(b.up)-6)+'" text-anchor="middle" font-size="11" fill="#16a34a" font-weight="600">上轨 '+fmt(b.up,2)+'</text>';
+      g+='<text x="'+cx+'" y="'+(Y(b.down)+14)+'" text-anchor="middle" font-size="11" fill="#16a34a" font-weight="600">下轨 '+fmt(b.down,2)+'</text>';
+      g+='<text x="'+cx+'" y="'+(H-padB+16)+'" text-anchor="middle" font-size="12" fill="#6b7280" font-weight="600">'+label+'</text>';
+    }
+    drawBollBand(dayB, dayX, '日BOLL (MA20)');
+    drawBollBand(weekB, weekX, '周BOLL (MA20)');
+    g+='<text x="'+(W/2)+'" y="'+(H-padB+36)+'" text-anchor="middle" font-size="11" fill="#9aa3af">蓝点 = 当前价 ¥'+fmt(s.price,2)+'  |  绿线 = 上下轨(±2σ)  |  灰虚线 = 中轨(MA20)</text>';
+    svgEl.innerHTML=g;
+    var lg='';
+    if(dayB) lg+='<span><i style="background:#16a34a"></i>日BOLL 上轨 '+fmt(dayB.up,2)+' · 中轨 '+fmt(dayB.mid,2)+' · 下轨 '+fmt(dayB.down,2)+'</span>';
+    if(weekB) lg+='<span><i style="background:#3b82f6"></i>周BOLL 上轨 '+fmt(weekB.up,2)+' · 中轨 '+fmt(weekB.mid,2)+' · 下轨 '+fmt(weekB.down,2)+'</span>';
+    if(!dayB&&!weekB) lg='<span class="muted">暂无布林数据，请先在玩具池中刷新现价。</span>';
+    legend.innerHTML=lg;
+    mask.classList.add('show');
+  }
+  function hideBollFullscreen(){
+    var mask=document.getElementById('bollFullMask');
+    if(mask) mask.classList.remove('show');
   }
 
   /* ========== 全量渲染 ========== */
@@ -1112,6 +1380,8 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
       if('lastRefresh' in storedSettings) state.lastRefresh=storedSettings.lastRefresh;
       if(storedSettings.boll) state.boll=storedSettings.boll;
     }
+    var savedExport=rd(LS_KEYS.lastExport, null);
+    if(savedExport) state.lastExportTime=savedExport;
 
     // 首次访问：载入示例数据
     if(!state.stocks.length){ state.stocks=buildSeedStocks(); persist(); }
@@ -1120,6 +1390,9 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
     try{ if(localStorage.getItem(LS_KEYS.sidebar)==='1') applySidebar(true); }catch(e){}
     all();
     switchSection(savedSec||'detect');
+
+    // R3 检查备份提醒
+    setTimeout(function(){ checkBackupReminder(); }, 500);
 
     // resize 时重新绘制捕鱼图（SVG 宽度依赖容器）
     var rzT=null; window.addEventListener('resize',function(){
