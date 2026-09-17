@@ -205,6 +205,11 @@ input,select{
 input:focus,select:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
 input:hover,select:hover{border-color:var(--cream-2)}
 .form-actions{grid-column:1/-1;display:flex;gap:var(--space-2);flex-wrap:wrap;margin-top:var(--space-2)}
+.field-err{color:var(--red);font-size:11px;font-weight:600;margin-top:2px;display:none}
+.field-err.show{display:block}
+.field-hint{color:var(--sub);font-size:11px;margin-top:2px}
+input.invalid{border-color:var(--red)}
+input.invalid:focus{box-shadow:0 0 0 3px var(--red-soft)}
 /* ========== 统计概览 ========== */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-4);margin-bottom:var(--space-5)}
 .stat{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:var(--space-4) var(--space-5);text-align:center;
@@ -342,6 +347,7 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
 .warn-bar .warn-txt{flex:1}
 .warn-bar .warn-close{flex-shrink:0;cursor:pointer;font-size:18px;line-height:1;opacity:.6;padding:0 4px;min-height:28px;display:flex;align-items:center;transition:opacity var(--transition-fast)}
 .warn-bar .warn-close:hover{opacity:1}
+.warn-bar .warn-retry{flex-shrink:0;margin-left:var(--space-2)}
 /* ========== R3 备份提醒增强 ========== */
 .backup-reminder{
   display:none;background:linear-gradient(135deg,#e0e7ff,#ede9fe);
@@ -420,7 +426,7 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
         <button class="btn ghost sm" id="btnExport" aria-label="导出备份数据">导出备份</button>
         <button class="btn plain sm" id="btnImport" aria-label="导入恢复数据">导入恢复</button>
       </div>
-      <span class="sync" aria-live="polite"><span class="dot"></span>本地 · 已保存</span>
+      <span class="sync" aria-live="polite"><span class="dot"></span><span class="sync-label">本地 · 已保存</span></span>
     </header>
     <div class="top-note">数据存于浏览器本地(localStorage),不上传任何服务器。建议定期点右上「导出备份」留存 JSON 快照。</div>
 
@@ -432,6 +438,7 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
     <div class="warn-bar" id="warnBar" role="alert">
       <span class="warn-ico">⚠️</span>
       <span class="warn-txt" id="warnTxt">数据可能已过期，请检查网络后重试刷新。</span>
+      <button class="mini primary warn-retry" id="warnRetry" type="button">重试刷新</button>
       <span class="warn-close" id="warnClose" title="关闭">×</span>
     </div>
 
@@ -490,7 +497,7 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
           <span id="refreshTime" aria-live="polite">尚未刷新</span>
         </div>
         <form class="form" id="stockForm" style="display:none" aria-label="添加或编辑玩具">
-          <div class="field"><label for="f_code">潮玩代码</label><input id="f_code" placeholder="如 601398" required aria-required="true"></div>
+          <div class="field"><label for="f_code">潮玩代码</label><input id="f_code" placeholder="如 601398" required aria-required="true" aria-describedby="f_code_err f_code_hint"><span class="field-err" id="f_code_err">请输入 6 位数字代码（如 601398、000333）</span><span class="field-hint" id="f_code_hint">6 位数字，沪市 6 开头，深市 0/3 开头，北交所 4/8 开头</span></div>
           <div class="field"><label for="f_name">潮玩名称</label><input id="f_name" placeholder="如 工商银行" required aria-required="true"></div>
           <div class="field"><label for="f_price">现价（¥）</label><input id="f_price" min="0.01" placeholder="如 6.50" required step="0.01" type="number" aria-required="true"></div>
           <div class="field"><label for="f_div">每只年度赠品（¥）</label><input id="f_div" min="0" placeholder="如 0.31" required step="0.01" type="number" aria-required="true"></div>
@@ -881,11 +888,19 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
     clearTimeout(t._timer); t._timer=setTimeout(function(){t.classList.remove('show');},2800);
   }
   function showRefreshTime(){
-    var el=document.getElementById('refreshTime'); if(!el) return;
+    var el=document.getElementById('refreshTime');
+    var badge=document.querySelector('.sync');
+    var txt = '尚未刷新';
     if(state.lastRefresh){
       var d=new Date(state.lastRefresh), p=function(n){return (n<10?'0':'')+n;};
-      el.textContent='最后更新：'+d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes());
-    } else { el.textContent='尚未刷新'; }
+      txt = '最后成功刷新：'+d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes());
+    }
+    if(el) el.textContent=txt;
+    if(badge){
+      var dot=badge.querySelector('.dot');
+      var label=badge.querySelector('.sync-label');
+      if(label) label.textContent = state.lastRefresh ? txt : '本地 · 已保存';
+    }
   }
   function refreshSpot(){
     return new Promise(function(resolve){
@@ -1051,6 +1066,18 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
     }
 
     // 表单提交
+    var fCodeEl=document.getElementById('f_code');
+    var fCodeErr=document.getElementById('f_code_err');
+    function setCodeErr(show, msg){
+      if(!fCodeEl||!fCodeErr) return;
+      if(msg) fCodeErr.textContent=msg;
+      fCodeErr.classList.toggle('show', !!show);
+      fCodeEl.classList.toggle('invalid', !!show);
+      fCodeEl.setAttribute('aria-invalid', show?'true':'false');
+    }
+    if(fCodeEl){
+      fCodeEl.addEventListener('input',function(){ if(fCodeErr.classList.contains('show')) setCodeErr(false); });
+    }
     document.getElementById('stockForm').addEventListener('submit',function(e){
       e.preventDefault();
       var code=document.getElementById('f_code').value.trim();
@@ -1060,9 +1087,10 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
       var ind=document.getElementById('f_ind').value.trim();
       var note=document.getElementById('f_note').value.trim();
       if(!code||!name||!(price>0)||div<0){ alert('请填写完整且有效的潮玩信息'); return; }
-      /* R5 股票代码校验 */
+      /* R5 股票代码校验（内联错误指示） */
       var v=validateStockCode(code);
-      if(!v.valid){ alert(v.msg); return; }
+      if(!v.valid){ setCodeErr(true, v.msg); fCodeEl.focus(); return; }
+      setCodeErr(false);
       if(state.editId){
         var s=state.stocks.filter(function(x){return x.id===state.editId;})[0];
         if(s){ s.code=v.pure;s.name=name;s.price=price;s.dividend=div;s.industry=ind;s.note=note; }
@@ -1078,10 +1106,12 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
     document.getElementById('cancelEdit').onclick=function(){
       state.editId=null; document.getElementById('stockForm').style.display='none';
       document.getElementById('stockForm').reset(); document.getElementById('submitBtn').textContent='保存潮玩';
+      setCodeErr(false);
     };
     document.getElementById('toggleForm').onclick=function(){
       var f=document.getElementById('stockForm');
       f.style.display = f.style.display==='grid'?'none':'grid';
+      setCodeErr(false);
       if(f.style.display==='grid') f.scrollIntoView({behavior:'smooth',block:'start'});
     };
 
@@ -1162,9 +1192,11 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
       for(var p=0;p<pops.length;p++) pops[p].classList.remove('show');
     });
 
-    /* ========== R2 警示条关闭 ========== */
+    /* ========== R2 警示条关闭 / 重试 ========== */
     var wc=document.getElementById('warnClose');
     if(wc) wc.addEventListener('click', hideWarn);
+    var wr=document.getElementById('warnRetry');
+    if(wr) wr.addEventListener('click', function(){ refreshPrices(); });
 
     /* ========== R3 备份提醒按钮 ========== */
     var brExport=document.getElementById('brExportNow');
