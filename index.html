@@ -328,13 +328,13 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
 .div-note-trigger:hover{color:var(--brand-hover);border-color:var(--brand-hover)}
 .div-note-trigger svg{width:13px;height:13px}
 .div-note-pop{
-  display:none;position:absolute;z-index:30;background:#fff;border:1px solid var(--line);
+  display:none;position:fixed;z-index:1000;background:#fff;border:1px solid var(--line);
   border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);font-size:12px;
-  color:var(--ink);line-height:1.7;min-width:260px;max-width:320px;
-  box-shadow:var(--shadow-lg);left:0;top:calc(100% + 4px)
+  color:var(--ink);line-height:1.7;min-width:260px;max-width:min(320px,92vw);
+  box-shadow:var(--shadow-xl);max-height:60vh;overflow:auto
 }
 .div-note-wrap{position:relative;display:inline-flex;align-items:center}
-.div-note-wrap:hover .div-note-pop,.div-note-pop.show{display:block}
+.div-note-pop.show{display:block}
 /* ========== R2 警示条 ========== */
 .warn-bar{
   display:none;background:var(--red-soft);border:1px solid #fca5a5;
@@ -1176,21 +1176,50 @@ footer{text-align:center;color:var(--sub);font-size:12px;padding:var(--space-4) 
       if(e.target.files[0]) importJSON(e.target.files[0]); e.target.value='';
     });
 
-    /* ========== R1 口径弹窗移动端点击切换 ========== */
+    /* ========== R1 口径弹窗定位（fixed，避免被 th sticky 遮挡） ========== */
+    function positionNotePop(wrap, pop){
+      var r=wrap.getBoundingClientRect();
+      var pw=pop.offsetWidth||280, ph=pop.offsetHeight||120;
+      var vw=window.innerWidth, vh=window.innerHeight;
+      var left=r.left, top=r.bottom+6;
+      if(left+pw>vw-8) left=Math.max(8, vw-pw-8);
+      if(left<8) left=8;
+      if(top+ph>vh-8) top=Math.max(8, r.top-ph-6);
+      pop.style.left=left+'px';
+      pop.style.top=top+'px';
+    }
+    function hideAllPops(){
+      var pops=document.querySelectorAll('.div-note-pop.show');
+      for(var p=0;p<pops.length;p++){ pops[p].classList.remove('show'); }
+    }
     var noteTriggers=document.querySelectorAll('.div-note-trigger');
     for(var nt=0;nt<noteTriggers.length;nt++){
       (function(tr){
+        var wrap=tr.parentNode;
+        var pop=wrap.querySelector('.div-note-pop');
+        if(!pop) return;
+        tr.addEventListener('mouseenter',function(){
+          pop.classList.add('show');
+          positionNotePop(wrap, pop);
+        });
+        wrap.addEventListener('mouseleave',function(){
+          pop.classList.remove('show');
+        });
         tr.addEventListener('click',function(e){
           e.stopPropagation();
-          var pop=tr.parentNode.querySelector('.div-note-pop');
-          if(pop) pop.classList.toggle('show');
+          if(pop.classList.contains('show')){
+            pop.classList.remove('show');
+          } else {
+            hideAllPops();
+            pop.classList.add('show');
+            positionNotePop(wrap, pop);
+          }
         });
       })(noteTriggers[nt]);
     }
-    document.addEventListener('click',function(){
-      var pops=document.querySelectorAll('.div-note-pop.show');
-      for(var p=0;p<pops.length;p++) pops[p].classList.remove('show');
-    });
+    document.addEventListener('click',hideAllPops);
+    window.addEventListener('resize',hideAllPops);
+    window.addEventListener('scroll',hideAllPops,true);
 
     /* ========== R2 警示条关闭 / 重试 ========== */
     var wc=document.getElementById('warnClose');
